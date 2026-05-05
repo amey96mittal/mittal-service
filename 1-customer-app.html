@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="theme-color" content="#0F1C2E">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<title>Mittal Electronics</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0F1C2E;--bg2:#162233;--card:#1C2E44;--card2:#223550;
+  --gold:#D4A843;--gold2:#EEC96A;--goldg:linear-gradient(135deg,#D4A843,#EEC96A);
+  --white:#F0EDE6;--muted:#7B90A8;--border:rgba(240,237,230,0.07);--borderg:rgba(212,168,67,0.2);
+  --green:#34D399;--green-bg:rgba(52,211,153,0.12);
+  --amber:#FBBF24;--amber-bg:rgba(251,191,36,0.12);
+  --red:#F87171;--red-bg:rgba(248,113,113,0.12);
+  --blue:#60A5FA;--blue-bg:rgba(96,165,250,0.12);
+  --r:18px;--r2:12px;
+  --safe-top:env(safe-area-inset-top,0px);
+  --safe-bottom:env(safe-area-inset-bottom,0px);
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
+html,body{height:100%;overflow:hidden;-webkit-text-size-adjust:100%;}
+body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--bg);color:var(--white);max-width:480px;margin:0 auto;position:relative;}
+
+.screen{position:fixed;inset:0;max-width:480px;margin:0 auto;display:flex;flex-direction:column;background:var(--bg);transform:translateX(110%);opacity:0;transition:transform .32s cubic-bezier(.4,0,.2,1),opacity .28s;pointer-events:none;z-index:10;overflow:hidden;}
+.screen.active{transform:translateX(0);opacity:1;pointer-events:all;}
+.screen.center{justify-content:center;align-items:center;padding:32px 28px;text-align:center;}
+
+.sb{flex:1;overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch;}
+.sb::-webkit-scrollbar{display:none;}
+
+/* SETUP */
+.setup-icon{font-size:3rem;margin-bottom:20px;}
+.setup-title{font-size:1.4rem;font-weight:800;margin-bottom:10px;}
+.setup-desc{font-size:.85rem;color:var(--muted);line-height:1.7;margin-bottom:28px;}
+.url-inp{width:100%;padding:14px 16px;background:var(--card);border:1.5px solid var(--borderg);border-radius:var(--r2);color:var(--white);font-family:'JetBrains Mono',monospace;font-size:.8rem;outline:none;margin-bottom:14px;}
+
+/* SPLASH */
+.splash-orb{width:100px;height:100px;border-radius:26px;background:var(--goldg);display:flex;align-items:center;justify-content:center;font-size:3rem;margin-bottom:28px;box-shadow:0 0 0 14px rgba(212,168,67,0.08),0 20px 60px rgba(212,168,67,0.25);animation:bob 3s ease-in-out infinite;}
+@keyframes bob{0%,100%{transform:translateY(0);}50%{transform:translateY(-8px);}}
+.splash-title{font-size:2rem;font-weight:800;letter-spacing:-.03em;margin-bottom:6px;}
+.splash-sub{color:var(--muted);font-size:.9rem;margin-bottom:44px;}
+.splash-btns{width:100%;max-width:300px;display:flex;flex-direction:column;gap:12px;}
+
+/* INPUTS */
+.field{margin-bottom:16px;}
+.field label{display:block;font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:6px;}
+.field input,.field select,.field textarea{width:100%;padding:13px 16px;background:var(--card);border:1.5px solid var(--border);border-radius:var(--r2);color:var(--white);font-family:'Plus Jakarta Sans',sans-serif;font-size:.92rem;outline:none;transition:border-color .2s,box-shadow .2s;-webkit-appearance:none;}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(212,168,67,.1);}
+.field input::placeholder,.field textarea::placeholder{color:var(--muted);}
+.field select option{background:var(--card2);}
+.field textarea{resize:none;min-height:88px;}
+.field-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+
+/* BUTTONS */
+.btn{display:flex;align-items:center;justify-content:center;gap:8px;padding:14px 24px;border:none;border-radius:var(--r2);font-family:'Plus Jakarta Sans',sans-serif;font-size:.93rem;font-weight:700;cursor:pointer;transition:all .18s;width:100%;}
+.btn-gold{background:var(--goldg);color:#0F1C2E;}
+.btn-gold:hover{opacity:.92;transform:translateY(-1px);}
+.btn-gold:disabled{opacity:.5;transform:none;cursor:not-allowed;}
+.btn-ghost{background:rgba(240,237,230,.06);color:var(--muted);border:1.5px solid var(--border);}
+.btn-ghost:hover{border-color:var(--gold);color:var(--gold);}
+.btn-red{background:var(--red-bg);color:var(--red);border:1px solid rgba(248,113,113,.2);}
+
+/* HBAR */
+.hbar{display:flex;align-items:center;gap:12px;padding:calc(var(--safe-top) + 14px) 20px 14px;border-bottom:1px solid var(--border);flex-shrink:0;}
+.back-btn{width:36px;height:36px;border-radius:10px;background:var(--card);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:1.1rem;cursor:pointer;flex-shrink:0;}
+.hbar-title{font-weight:700;font-size:1rem;flex:1;}
+
+/* HOME HEAD */
+.home-head{padding:calc(var(--safe-top) + 18px) 20px 0;flex-shrink:0;}
+.hh-row{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:20px;}
+.greet-lbl{font-size:.76rem;color:var(--muted);margin-bottom:3px;}
+.user-name{font-size:1.5rem;font-weight:800;letter-spacing:-.02em;}
+.ava{width:44px;height:44px;border-radius:12px;background:var(--goldg);display:flex;align-items:center;justify-content:center;font-size:1.1rem;font-weight:800;color:#0F1C2E;cursor:pointer;flex-shrink:0;}
+
+/* NAV */
+.bnav{display:flex;padding:8px 0 calc(var(--safe-bottom) + 8px);background:var(--card);border-top:1px solid var(--border);flex-shrink:0;position:relative;z-index:5;}
+.nb{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;background:none;border:none;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;color:var(--muted);transition:color .15s;padding:5px 0;}
+.nb.on{color:var(--gold);}
+.nb .ni{font-size:1.3rem;line-height:1;}
+.nb .nl{font-size:.6rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;}
+.open-dot{width:7px;height:7px;border-radius:50%;background:var(--red);position:absolute;top:8px;right:calc(50% - 28px);display:none;}
+
+/* STATS */
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:16px 0 20px;}
+.stat{background:var(--card);border:1px solid var(--border);border-radius:var(--r2);padding:14px 10px;text-align:center;}
+.stat-v{font-size:1.7rem;font-weight:800;color:var(--gold);letter-spacing:-.02em;}
+.stat-l{font-size:.67rem;color:var(--muted);margin-top:2px;}
+
+/* PROMO */
+.promo{border-radius:var(--r);padding:17px;margin-bottom:20px;background:linear-gradient(135deg,#152219,#0d1a10);border:1px solid rgba(52,211,153,.18);position:relative;overflow:hidden;}
+.promo::after{content:'🎉';position:absolute;right:14px;top:50%;transform:translateY(-50%);font-size:2.6rem;opacity:.3;}
+.promo-tag{font-size:.67rem;font-weight:700;color:var(--green);text-transform:uppercase;letter-spacing:.1em;margin-bottom:4px;}
+.promo-t{font-size:.97rem;font-weight:700;margin-bottom:3px;}
+.promo-s{font-size:.76rem;color:rgba(240,237,230,.45);}
+
+/* PRODUCT CARD */
+.pc{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:16px;margin-bottom:12px;cursor:pointer;transition:border-color .2s,transform .2s;}
+.pc:hover{border-color:var(--borderg);transform:translateY(-2px);}
+.pc-top{display:flex;gap:14px;align-items:flex-start;margin-bottom:12px;}
+.pc-ico{width:50px;height:50px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:1.6rem;flex-shrink:0;}
+.pc-brand{font-size:.67rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--gold);margin-bottom:2px;}
+.pc-name{font-size:.97rem;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.pc-model{font-size:.76rem;color:var(--muted);font-family:'JetBrains Mono',monospace;margin-top:2px;}
+.pc-ft{display:flex;align-items:center;justify-content:space-between;padding-top:11px;border-top:1px solid var(--border);}
+.pc-date{font-size:.73rem;color:var(--muted);}
+.wchip{display:inline-flex;align-items:center;gap:4px;padding:3px 9px;border-radius:20px;font-size:.66rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;}
+.w-ok{background:var(--green-bg);color:var(--green);}
+.w-exp{background:var(--red-bg);color:var(--red);}
+.w-comp{background:var(--amber-bg);color:var(--amber);}
+
+/* TICKET CARD */
+.tc{background:var(--card);border:1px solid var(--border);border-radius:var(--r2);padding:14px 16px;margin-bottom:10px;}
+.tc-top{display:flex;align-items:flex-start;justify-content:space-between;gap:8px;margin-bottom:8px;}
+.tc-id{font-family:'JetBrains Mono',monospace;font-size:.7rem;color:var(--gold);font-weight:600;}
+.tc-dt{font-size:.68rem;color:var(--muted);}
+.tc-prod{font-size:.83rem;font-weight:600;}
+.tc-iss{font-size:.78rem;color:var(--muted);margin-top:2px;}
+.tc-note{font-size:.73rem;color:var(--muted);font-style:italic;margin-top:8px;padding-top:8px;border-top:1px solid var(--border);}
+.tc-ref{font-size:.73rem;color:var(--blue);margin-top:4px;}
+
+/* STATUS PILL */
+.pill{display:inline-flex;align-items:center;gap:4px;padding:3px 8px;border-radius:20px;font-size:.63rem;font-weight:800;text-transform:uppercase;letter-spacing:.06em;flex-shrink:0;}
+.pill::before{content:'';width:5px;height:5px;border-radius:50%;background:currentColor;}
+.p-open{background:var(--amber-bg);color:var(--amber);}
+.p-prog{background:var(--blue-bg);color:var(--blue);}
+.p-res{background:var(--green-bg);color:var(--green);}
+.p-clo{background:rgba(123,144,168,.12);color:var(--muted);}
+
+/* DETAIL */
+.dh{padding:calc(var(--safe-top) + 14px) 20px 0;flex-shrink:0;}
+.d-icon{width:70px;height:70px;border-radius:18px;display:flex;align-items:center;justify-content:center;font-size:2rem;margin:16px 0 12px;}
+.d-brand{font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--gold);margin-bottom:3px;}
+.d-name{font-size:1.45rem;font-weight:800;letter-spacing:-.02em;margin-bottom:2px;}
+.d-model{font-size:.83rem;color:var(--muted);font-family:'JetBrains Mono',monospace;}
+
+.igrid{display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--border);border-radius:var(--r2);overflow:hidden;margin:16px 0;}
+.igc{background:var(--card);padding:13px 15px;border-bottom:1px solid var(--border);}
+.igc:nth-last-child(-n+2){border-bottom:none;}
+.igc:nth-child(odd){border-right:1px solid var(--border);}
+.igc-l{font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:4px;}
+.igc-v{font-size:.87rem;font-weight:600;}
+
+.ag{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:20px;}
+.at{background:var(--card);border:1px solid var(--border);border-radius:var(--r2);padding:15px 10px;display:flex;flex-direction:column;align-items:center;gap:6px;cursor:pointer;transition:all .18s;font-family:'Plus Jakarta Sans',sans-serif;font-size:.8rem;font-weight:700;text-decoration:none;}
+.at:hover{transform:translateY(-2px);}
+.at-i{font-size:1.4rem;}
+.at-c{color:var(--amber);border-color:rgba(251,191,36,.2);}
+.at-p{color:var(--blue);border-color:rgba(96,165,250,.2);}
+
+.sec-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;}
+.sec-t{font-size:.97rem;font-weight:700;}
+
+/* COMPLAINT */
+.prod-chip{display:flex;align-items:center;gap:10px;padding:10px 14px;background:var(--card);border-radius:var(--r2);margin-bottom:20px;}
+
+/* SUCCESS */
+.sring{width:90px;height:90px;border-radius:50%;background:var(--green-bg);border:2px solid var(--green);display:flex;align-items:center;justify-content:center;font-size:2.7rem;margin-bottom:24px;animation:pop .45s cubic-bezier(.34,1.56,.64,1);}
+@keyframes pop{from{transform:scale(.4);opacity:0;}to{transform:scale(1);opacity:1;}}
+.tbox{background:var(--card);border:1px solid var(--borderg);border-radius:var(--r);padding:22px;width:100%;margin:20px 0;text-align:center;}
+.tbox-l{font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:8px;}
+.tbox-id{font-family:'JetBrains Mono',monospace;font-size:1.4rem;font-weight:700;color:var(--gold);letter-spacing:.05em;}
+.tbox-s{font-size:.76rem;color:var(--muted);margin-top:6px;}
+
+/* LOADER */
+.loader{display:flex;align-items:center;justify-content:center;padding:48px;flex-direction:column;gap:14px;}
+.spin{width:30px;height:30px;border:3px solid rgba(212,168,67,.2);border-top-color:var(--gold);border-radius:50%;animation:spin .7s linear infinite;}
+@keyframes spin{to{transform:rotate(360deg);}}
+.loader p{font-size:.83rem;color:var(--muted);}
+
+/* EMPTY */
+.empty{text-align:center;padding:36px 20px;color:var(--muted);}
+.empty span{font-size:2.4rem;display:block;margin-bottom:10px;}
+.empty p{font-size:.86rem;line-height:1.6;}
+
+/* TOAST */
+#toast{position:fixed;bottom:calc(var(--safe-bottom) + 78px);left:50%;transform:translateX(-50%) translateY(16px);background:var(--card2);border:1px solid var(--borderg);color:var(--white);padding:10px 22px;border-radius:30px;font-size:.82rem;font-weight:600;white-space:nowrap;opacity:0;transition:all .3s;z-index:9999;pointer-events:none;box-shadow:0 8px 32px rgba(0,0,0,.3);}
+#toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+
+.pad{padding:0 20px;} .padv{padding:16px 20px;} .pb80{padding-bottom:80px;}
+.mt12{margin-top:12px;} .mt16{margin-top:16px;} .mt20{margin-top:20px;}
+</style>
+</head>
+<body>
+
+<!-- SETUP -->
+<div class="screen center active" id="s-setup">
+  <div class="setup-icon">⚙️</div>
+  <div class="setup-title">One-Time Setup</div>
+  <div class="setup-desc">Paste the Server URL that Mittal Electronics gave you. You only need to do this once.</div>
+  <input class="url-inp" type="url" id="setup-url" placeholder="https://script.google.com/macros/s/…">
+  <button class="btn btn-gold" onclick="saveUrl()">Connect & Start →</button>
+  <p style="margin-top:14px;font-size:.74rem;color:var(--muted);">One-time only. Won't ask again.</p>
+</div>
+
+<!-- SPLASH -->
+<div class="screen center" id="s-splash">
+  <div class="splash-orb">🏪</div>
+  <div class="splash-title">Mittal Electronics</div>
+  <div class="splash-sub">Your products. Your warranty. One app.</div>
+  <div class="splash-btns">
+    <button class="btn btn-gold" onclick="go('s-register')">Create Account →</button>
+    <button class="btn btn-ghost" onclick="go('s-login')">Already registered? Sign In</button>
+  </div>
+</div>
+
+<!-- REGISTER -->
+<div class="screen" id="s-register">
+  <div class="hbar"><div class="back-btn" onclick="go('s-splash')">←</div><div class="hbar-title">Create Account</div></div>
+  <div class="sb padv pb80">
+    <p style="color:var(--muted);font-size:.84rem;margin-bottom:20px;line-height:1.6;">Register once — see all your products and raise complaints anytime.</p>
+    <div class="field"><label>Full Name ✱</label><input type="text" id="r-name" placeholder="e.g. Pravin Deshmukh" autocomplete="name"></div>
+    <div class="field"><label>Mobile Number ✱</label><input type="tel" id="r-phone" placeholder="10-digit mobile" maxlength="10" inputmode="numeric"></div>
+    <div class="field"><label>Email ID</label><input type="email" id="r-email" placeholder="optional"></div>
+    <div class="field"><label>Full Address ✱</label><input type="text" id="r-address" placeholder="House no, Street, Area"></div>
+    <div class="field-row">
+      <div class="field"><label>City ✱</label><input type="text" id="r-city" placeholder="Akola"></div>
+      <div class="field"><label>Pin Code ✱</label><input type="text" id="r-pin" placeholder="444001" maxlength="6" inputmode="numeric"></div>
+    </div>
+    <div class="mt16"><button class="btn btn-gold" id="reg-btn" onclick="doRegister()">Create My Account →</button></div>
+    <div class="mt12"><button class="btn btn-ghost" onclick="go('s-login')">Already have an account?</button></div>
+  </div>
+</div>
+
+<!-- LOGIN -->
+<div class="screen" id="s-login">
+  <div class="hbar"><div class="back-btn" onclick="go('s-splash')">←</div><div class="hbar-title">Sign In</div></div>
+  <div class="sb padv">
+    <p style="color:var(--muted);font-size:.84rem;margin-bottom:24px;">Enter your registered mobile number.</p>
+    <div class="field"><label>Mobile Number ✱</label><input type="tel" id="l-phone" placeholder="10-digit mobile" maxlength="10" inputmode="numeric"></div>
+    <div class="mt16"><button class="btn btn-gold" onclick="doLogin()">Sign In →</button></div>
+    <div class="mt12"><button class="btn btn-ghost" onclick="go('s-register')">New customer? Register</button></div>
+  </div>
+</div>
+
+<!-- HOME -->
+<div class="screen" id="s-home">
+  <div class="home-head">
+    <div class="hh-row">
+      <div><div class="greet-lbl">Welcome back,</div><div class="user-name" id="h-name">—</div></div>
+      <div class="ava" id="h-ava" onclick="switchTab('profile')">M</div>
+    </div>
+  </div>
+  <div class="sb" id="tab-body" style="padding:0 20px;"></div>
+  <nav class="bnav">
+    <button class="nb on" id="nb-products" onclick="switchTab('products')"><span class="ni">📦</span><span class="nl">Products</span></button>
+    <button class="nb" id="nb-tickets" onclick="switchTab('tickets')" style="position:relative;"><span class="ni">🎫</span><span class="nl">Tickets</span><span class="open-dot" id="odot"></span></button>
+    <button class="nb" id="nb-profile" onclick="switchTab('profile')"><span class="ni">👤</span><span class="nl">Profile</span></button>
+  </nav>
+</div>
+
+<!-- DETAIL -->
+<div class="screen" id="s-detail">
+  <div class="dh">
+    <div class="hbar" style="padding:0;border:none;margin-bottom:0;"><div class="back-btn" onclick="go('s-home')">←</div><div class="hbar-title">Product Details</div></div>
+    <div class="d-icon" id="di-ico-wrap"><span id="di-ico">📦</span></div>
+    <div class="d-brand" id="di-brand">—</div>
+    <div class="d-name" id="di-name">—</div>
+    <div class="d-model" id="di-model">—</div>
+  </div>
+  <div class="sb" style="padding:0 20px 20px;">
+    <div class="igrid">
+      <div class="igc"><div class="igc-l">Purchase Date</div><div class="igc-v" id="di-date">—</div></div>
+      <div class="igc"><div class="igc-l">Warranty Until</div><div class="igc-v" id="di-war">—</div></div>
+      <div class="igc"><div class="igc-l">Invoice No.</div><div class="igc-v" id="di-inv">—</div></div>
+      <div class="igc"><div class="igc-l">Status</div><div class="igc-v" id="di-sts">—</div></div>
+    </div>
+    <div class="ag">
+      <button class="at at-c" onclick="go('s-complaint')"><span class="at-i">🔧</span>Raise Complaint</button>
+      <a class="at at-p" href="tel:+917000000000"><span class="at-i">📞</span>Call Service</a>
+    </div>
+    <div class="sec-row"><div class="sec-t">Complaint History</div></div>
+    <div id="di-tix"></div>
+  </div>
+</div>
+
+<!-- COMPLAINT -->
+<div class="screen" id="s-complaint">
+  <div class="hbar"><div class="back-btn" onclick="go('s-detail')">←</div><div class="hbar-title">Raise Complaint</div></div>
+  <div class="sb padv pb80">
+    <div class="prod-chip"><span id="cf-ico" style="font-size:1.4rem;">📦</span><div><div style="font-size:.67rem;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:.08em;" id="cf-brand">—</div><div style="font-size:.9rem;font-weight:700;" id="cf-name">—</div></div></div>
+    <div class="field"><label>Type of Issue ✱</label>
+      <select id="cf-type">
+        <option value="">Select issue type</option>
+        <option>Not cooling / Not working</option>
+        <option>Making noise or vibrating</option>
+        <option>Water leakage</option>
+        <option>Remote not responding</option>
+        <option>Error code on display</option>
+        <option>Gas leak suspected</option>
+        <option>Installation problem</option>
+        <option>Demo was never done</option>
+        <option>Other</option>
+      </select>
+    </div>
+    <div class="field"><label>Describe the Problem</label><textarea id="cf-desc" placeholder="Tell us what's happening — when did it start, what you noticed…"></textarea></div>
+    <div class="field"><label>Best Time to Call</label>
+      <select id="cf-time">
+        <option>Anytime</option><option>Morning 9am–12pm</option><option>Afternoon 12pm–4pm</option><option>Evening 4pm–8pm</option>
+      </select>
+    </div>
+    <div class="mt16"><button class="btn btn-gold" id="sub-btn" onclick="submitComplaint()">Submit Complaint →</button></div>
+  </div>
+</div>
+
+<!-- SUCCESS -->
+<div class="screen center" id="s-success">
+  <div class="sring">✓</div>
+  <div style="font-size:1.4rem;font-weight:800;margin-bottom:8px;">Complaint Registered!</div>
+  <p style="color:var(--muted);font-size:.86rem;text-align:center;line-height:1.6;margin-bottom:4px;">Our team will call you within 4 hours. Save your ticket ID below.</p>
+  <div class="tbox"><div class="tbox-l">Your Ticket ID</div><div class="tbox-id" id="s-tid">—</div><div class="tbox-s" id="s-tsub">—</div></div>
+  <button class="btn btn-gold" style="max-width:280px;" onclick="goHome()">Back to My Products</button>
+</div>
+
+<div id="toast"></div>
+
+<script>
+let URL_BASE = localStorage.getItem('me_srv') || '';
+let CU = JSON.parse(localStorage.getItem('me_sess') || 'null');
+let AP = null; // active product
+let TAB = 'products';
+let _prods = [], _tix = [];
+
+// ── URL SETUP ───────────────────────────────────────────
+function saveUrl() {
+  const u = document.getElementById('setup-url').value.trim();
+  if (!u.startsWith('https://')) { toast('Paste a valid URL starting with https://'); return; }
+  localStorage.setItem('me_srv', u);
+  URL_BASE = u;
+  CU ? (renderHome(), go('s-home')) : go('s-splash');
+}
+
+// ── API ─────────────────────────────────────────────────
+async function GET(params) {
+  const r = await fetch(URL_BASE + '?' + new URLSearchParams(params));
+  return r.json();
+}
+async function POST(body) {
+  const r = await fetch(URL_BASE, { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(body) });
+  return r.json();
+}
+
+// ── NAVIGATION ──────────────────────────────────────────
+function go(id) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+}
+function goHome() { go('s-home'); switchTab('products'); }
+
+// ── AUTH ────────────────────────────────────────────────
+async function doRegister() {
+  const btn = document.getElementById('reg-btn');
+  const name = v('r-name'), phone = v('r-phone'), email = v('r-email'),
+        address = v('r-address'), city = v('r-city'), pinCode = v('r-pin');
+  if (!name||!phone||!address||!city||!pinCode) { toast('Please fill all required fields'); return; }
+  if (phone.length!==10) { toast('Enter a valid 10-digit number'); return; }
+  if (pinCode.length!==6) { toast('Enter a valid 6-digit pin code'); return; }
+  btn.disabled=true; btn.textContent='Creating account…';
+  try {
+    const d = await POST({action:'registerCustomer',name,phone,email,address,city,pinCode});
+    if (!d.success) { toast(d.message||'Registration failed'); return; }
+    CU = d.customer;
+    localStorage.setItem('me_sess', JSON.stringify(CU));
+    renderHome(); go('s-home');
+    toast('Welcome, '+name.split(' ')[0]+'! 🎉');
+  } catch(e) { toast('Cannot connect. Check your internet.'); }
+  finally { btn.disabled=false; btn.textContent='Create My Account →'; }
+}
+
+async function doLogin() {
+  const phone = v('l-phone');
+  if (!phone||phone.length!==10) { toast('Enter a valid 10-digit number'); return; }
+  try {
+    const d = await GET({action:'getCustomer',phone});
+    if (!d.success) { toast('No account found. Please register first.'); return; }
+    CU = d.customer;
+    localStorage.setItem('me_sess', JSON.stringify(CU));
+    renderHome(); go('s-home');
+  } catch(e) { toast('Cannot connect. Check your internet.'); }
+}
+
+function doLogout() {
+  localStorage.removeItem('me_sess');
+  CU=null; AP=null; go('s-splash');
+}
+
+// ── HOME ────────────────────────────────────────────────
+function renderHome() {
+  document.getElementById('h-name').textContent = CU.name.split(' ')[0];
+  document.getElementById('h-ava').textContent  = CU.name[0].toUpperCase();
+  switchTab(TAB);
+}
+
+function switchTab(tab) {
+  TAB = tab;
+  ['products','tickets','profile'].forEach(t => {
+    document.getElementById('nb-'+t)?.classList.toggle('on', t===tab);
+  });
+  const body = document.getElementById('tab-body');
+  body.innerHTML = '<div class="loader"><div class="spin"></div><p>Loading…</p></div>';
+  if (tab==='products') loadProducts(body);
+  else if (tab==='tickets') loadTickets(body);
+  else renderProfile(body);
+}
+
+// ── PRODUCTS ────────────────────────────────────────────
+async function loadProducts(body) {
+  try {
+    const [pR, tR, proR] = await Promise.all([
+      GET({action:'getProducts',phone:CU.phone}),
+      GET({action:'getTickets',phone:CU.phone}),
+      GET({action:'getPromos'})
+    ]);
+    _prods = pR.products||[];
+    _tix   = tR.tickets||[];
+    const promos = proR.promos||[];
+    const openN  = _tix.filter(t=>t.status==='Open').length;
+    const odot   = document.getElementById('odot');
+    odot.style.display = openN ? 'block' : 'none';
+
+    let h = '';
+    h += `<div class="stats"><div class="stat"><div class="stat-v">${_prods.length}</div><div class="stat-l">Products</div></div><div class="stat"><div class="stat-v">${_tix.length}</div><div class="stat-l">Tickets</div></div><div class="stat"><div class="stat-v">${openN}</div><div class="stat-l">Open</div></div></div>`;
+
+    if (promos.length) {
+      const p = promos[promos.length-1];
+      h += `<div class="promo"><div class="promo-tag">🎊 ${p.tag||'Offer'}</div><div class="promo-t">${p.title}</div><div class="promo-s">${p.subText||''}</div></div>`;
+    }
+
+    h += `<div class="sec-row"><div class="sec-t">My Products</div></div>`;
+    if (!_prods.length) {
+      h += `<div class="empty"><span>📦</span><p>No products registered yet.<br>Your products appear here after purchase from Mittal Electronics.</p></div>`;
+    } else {
+      _prods.forEach(p => {
+        const pt   = _tix.filter(t=>t.productId===p.productId);
+        const hasO = pt.some(t=>t.status==='Open'||t.status==='In Progress');
+        const wOk  = warOk(p.purchaseDate, p.warrantyYears);
+        const cc   = hasO?'w-comp':wOk?'w-ok':'w-exp';
+        const ct   = hasO?'Complaint Open':wOk?'Under Warranty':'Warranty Expired';
+        h += `<div class="pc" onclick="openProd('${p.productId}')">
+          <div class="pc-top">
+            <div class="pc-ico" style="background:${catBg(p.category)}">${catIco(p.category)}</div>
+            <div style="flex:1;min-width:0;"><div class="pc-brand">${p.brand}</div><div class="pc-name">${p.productName}</div><div class="pc-model">${p.modelNumber}</div></div>
+            <div style="color:var(--muted);font-size:1.1rem;margin-top:4px;">›</div>
+          </div>
+          <div class="pc-ft"><div class="pc-date">Purchased ${fd(p.purchaseDate)}</div><div class="wchip ${cc}">${ct}</div></div>
+        </div>`;
+      });
+    }
+    body.innerHTML = '<div style="padding-bottom:20px">'+h+'</div>';
+  } catch(e) {
+    body.innerHTML = `<div class="empty"><span>⚠️</span><p>Could not load. Check your internet.</p></div>`;
+  }
+}
+
+function openProd(pid) {
+  const p = _prods.find(x=>x.productId===pid);
+  if (!p) return;
+  AP = p;
+  const ico = catIco(p.category), bg = catBg(p.category);
+  const wrap = document.getElementById('di-ico-wrap');
+  wrap.style.background = bg;
+  document.getElementById('di-ico').textContent    = ico;
+  document.getElementById('di-brand').textContent  = p.brand;
+  document.getElementById('di-name').textContent   = p.productName;
+  document.getElementById('di-model').textContent  = p.modelNumber;
+  document.getElementById('di-date').textContent   = fd(p.purchaseDate);
+  document.getElementById('di-inv').textContent    = p.invoiceNo||'—';
+  const wy = parseInt(p.warrantyYears)||1;
+  document.getElementById('di-war').textContent = fd(addYrs(p.purchaseDate,wy));
+  document.getElementById('di-sts').textContent = warOk(p.purchaseDate,wy)?'✅ Active':'⚠️ Expired';
+  document.getElementById('cf-ico').textContent   = ico;
+  document.getElementById('cf-brand').textContent = p.brand;
+  document.getElementById('cf-name').textContent  = p.productName;
+  const pt = _tix.filter(t=>t.productId===pid);
+  const dtix = document.getElementById('di-tix');
+  if (!pt.length) {
+    dtix.innerHTML = `<div class="empty"><span>🎫</span><p>No complaints raised for this product.</p></div>`;
+  } else {
+    dtix.innerHTML = pt.slice().reverse().map(t=>`
+      <div class="tc">
+        <div class="tc-top"><div><div class="tc-id">${t.ticketId}</div><div class="tc-dt">${t.raisedOn}</div></div><span class="pill ${pc(t.status)}">${t.status}</span></div>
+        <div class="tc-prod">${t.issueType}</div>
+        <div class="tc-iss">${t.description||''}</div>
+        ${t.adminNote?`<div class="tc-note">📝 ${t.adminNote}</div>`:''}
+        ${t.companyTicket?`<div class="tc-ref">🏢 Company Ref: ${t.companyTicket}</div>`:''}
+      </div>`).join('');
+  }
+  go('s-detail');
+}
+
+// ── COMPLAINT ───────────────────────────────────────────
+async function submitComplaint() {
+  const iss = v('cf-type'), desc = v('cf-desc'), pref = document.getElementById('cf-time').value;
+  if (!iss) { toast('Please select an issue type'); return; }
+  if (!AP)  { toast('No product selected'); return; }
+  const btn = document.getElementById('sub-btn');
+  btn.disabled=true; btn.textContent='Submitting…';
+  try {
+    const r = await POST({action:'raiseTicket',customerPhone:CU.phone,productId:AP.productId,productBrand:AP.brand,productName:AP.productName,modelNumber:AP.modelNumber,category:AP.category,issueType:iss,description:desc,preferredTime:pref});
+    if (!r.success) { toast(r.message||'Failed'); return; }
+    document.getElementById('s-tid').textContent  = r.ticketId;
+    document.getElementById('s-tsub').textContent = `${AP.brand} ${AP.modelNumber}`;
+    go('s-success');
+  } catch(e) { toast('Cannot connect. Try again.'); }
+  finally { btn.disabled=false; btn.textContent='Submit Complaint →'; }
+}
+
+// ── TICKETS TAB ─────────────────────────────────────────
+async function loadTickets(body) {
+  try {
+    const r = await GET({action:'getTickets',phone:CU.phone});
+    const tix = (r.tickets||[]).slice().reverse();
+    if (!tix.length) { body.innerHTML=`<div style="padding-top:16px"><div class="empty"><span>🎫</span><p>No complaints raised yet.<br>Tap any product to raise one.</p></div></div>`; return; }
+    body.innerHTML = '<div style="padding-top:16px">'+tix.map(t=>`
+      <div class="tc">
+        <div class="tc-top"><div><div class="tc-id">${t.ticketId}</div><div class="tc-dt">${t.raisedOn}</div></div><span class="pill ${pc(t.status)}">${t.status}</span></div>
+        <div class="tc-prod">${t.productBrand} ${t.modelNumber}</div>
+        <div class="tc-iss">${t.issueType}</div>
+        ${t.description?`<div class="tc-iss" style="margin-top:3px">${t.description}</div>`:''}
+        ${t.adminNote?`<div class="tc-note">📝 ${t.adminNote}</div>`:''}
+        ${t.companyTicket?`<div class="tc-ref">🏢 Company Ref: ${t.companyTicket}</div>`:''}
+      </div>`).join('')+'</div>';
+  } catch(e) { body.innerHTML=`<div class="empty"><span>⚠️</span><p>Could not load tickets.</p></div>`; }
+}
+
+// ── PROFILE TAB ─────────────────────────────────────────
+function renderProfile(body) {
+  const u = CU;
+  const row = (l,val) => `<div style="display:flex;justify-content:space-between;align-items:center;padding:11px 0;border-bottom:1px solid var(--border);"><span style="font-size:.8rem;color:var(--muted);">${l}</span><span style="font-size:.83rem;font-weight:600;">${val}</span></div>`;
+  body.innerHTML = `<div style="padding-top:16px">
+    <div style="display:flex;align-items:center;gap:14px;margin-bottom:24px;">
+      <div style="width:54px;height:54px;border-radius:14px;background:var(--goldg);display:flex;align-items:center;justify-content:center;font-size:1.4rem;font-weight:800;color:#0F1C2E;flex-shrink:0;">${u.name[0].toUpperCase()}</div>
+      <div><div style="font-size:1.1rem;font-weight:800;">${u.name}</div><div style="font-size:.8rem;color:var(--muted);">${u.phone}</div></div>
+    </div>
+    ${row('Name',u.name)}${row('Phone',u.phone)}${row('Email',u.email||'—')}${row('Address',u.address)}${row('City',u.city)}${row('Pin Code',u.pinCode)}
+    <div class="mt20"><button class="btn btn-red" onclick="doLogout()">Sign Out</button></div>
+  </div>`;
+}
+
+// ── HELPERS ─────────────────────────────────────────────
+function v(id){return document.getElementById(id)?.value?.trim()||'';}
+function fd(d){if(!d)return'—';try{return new Date(d).toLocaleDateString('en-IN',{day:'2-digit',month:'short',year:'numeric'});}catch{return String(d);}}
+function addYrs(ds,y){try{const d=new Date(ds);d.setFullYear(d.getFullYear()+(y||1));return d.toISOString().slice(0,10);}catch{return '';}}
+function warOk(ds,y){try{return new Date(addYrs(ds,y||1))>new Date();}catch{return false;}}
+function catIco(c){return{'Air Conditioner':'❄️','Washing Machine':'🌀','Refrigerator':'🧊','Television':'📺','Microwave':'♨️','Water Purifier':'💧','Geyser':'🔥'}[c]||'📦';}
+function catBg(c){return{'Air Conditioner':'rgba(96,165,250,.15)','Washing Machine':'rgba(167,139,250,.15)','Refrigerator':'rgba(52,211,153,.15)','Television':'rgba(251,191,36,.15)','Geyser':'rgba(248,113,113,.15)'}[c]||'rgba(212,168,67,.15)';}
+function pc(s){return{'Open':'p-open','In Progress':'p-prog','Resolved':'p-res','Closed':'p-clo'}[s]||'p-open';}
+function toast(m){const t=document.getElementById('toast');t.textContent=m;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),3000);}
+
+// ── INIT ────────────────────────────────────────────────
+window.addEventListener('load',()=>{
+  if (!URL_BASE){go('s-setup');return;}
+  if (CU){renderHome();go('s-home');}
+  else go('s-splash');
+});
+</script>
+</body>
+</html>
