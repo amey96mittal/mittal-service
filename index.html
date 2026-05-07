@@ -6,241 +6,261 @@
 <meta name="theme-color" content="#0F1C2E">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <title>Mittal Electronics</title>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
 <style>
-:root{
-  --bg:#0F1C2E;--bg2:#162233;--card:#1C2E44;--card2:#223550;
-  --gold:#D4A843;--gold2:#EEC96A;--goldg:linear-gradient(135deg,#D4A843,#EEC96A);
-  --white:#F0EDE6;--muted:#7B90A8;--border:rgba(240,237,230,0.07);--borderg:rgba(212,168,67,0.2);
-  --green:#34D399;--green-bg:rgba(52,211,153,0.12);
-  --amber:#FBBF24;--amber-bg:rgba(251,191,36,0.12);
-  --red:#F87171;--red-bg:rgba(248,113,113,0.12);
-  --blue:#60A5FA;--blue-bg:rgba(96,165,250,0.12);
-  --r:18px;--r2:12px;
-  --safe-top:env(safe-area-inset-top,0px);
-  --safe-bottom:env(safe-area-inset-bottom,0px);
-}
+:root{--bg:#0F1C2E;--card:#1C2E44;--card2:#223550;--gold:#D4A843;--gold2:#EEC96A;--goldg:linear-gradient(135deg,#D4A843,#EEC96A);--white:#F0EDE6;--muted:#7B90A8;--border:rgba(240,237,230,0.08);--borderg:rgba(212,168,67,0.22);--green:#34D399;--green-bg:rgba(52,211,153,0.13);--amber:#FBBF24;--amber-bg:rgba(251,191,36,0.13);--red:#F87171;--red-bg:rgba(248,113,113,0.13);--blue:#60A5FA;--blue-bg:rgba(96,165,250,0.13);--r:18px;--r2:12px;--st:env(safe-area-inset-top,0px);--sb:env(safe-area-inset-bottom,0px);}
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
 html,body{height:100%;overflow:hidden;-webkit-text-size-adjust:100%;}
-body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--bg);color:var(--white);max-width:480px;margin:0 auto;position:relative;}
-.screen{position:fixed;inset:0;max-width:480px;margin:0 auto;display:flex;flex-direction:column;background:var(--bg);transform:translateX(110%);opacity:0;transition:transform .32s cubic-bezier(.4,0,.2,1),opacity .28s;pointer-events:none;z-index:10;overflow:hidden;}
+body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--bg);color:var(--white);max-width:480px;margin:0 auto;}
+.screen{position:fixed;inset:0;max-width:480px;margin:0 auto;display:flex;flex-direction:column;background:var(--bg);transform:translateX(110%);opacity:0;transition:transform .3s cubic-bezier(.4,0,.2,1),opacity .25s;pointer-events:none;z-index:10;overflow:hidden;}
 .screen.active{transform:translateX(0);opacity:1;pointer-events:all;}
-.screen.center{justify-content:center;align-items:center;padding:32px 28px;text-align:center;}
-.sb{flex:1;overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch;}
+.screen.cx{justify-content:center;align-items:center;padding:28px 24px;text-align:center;}
+.sb{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;}
 .sb::-webkit-scrollbar{display:none;}
-.setup-icon{font-size:3rem;margin-bottom:20px;}
-.setup-title{font-size:1.4rem;font-weight:800;margin-bottom:10px;}
-.setup-desc{font-size:.85rem;color:var(--muted);line-height:1.7;margin-bottom:28px;}
-.url-inp{width:100%;padding:14px 16px;background:var(--card);border:1.5px solid var(--borderg);border-radius:var(--r2);color:var(--white);font-family:'JetBrains Mono',monospace;font-size:.78rem;outline:none;margin-bottom:14px;word-break:break-all;}
-.splash-orb{width:100px;height:100px;border-radius:26px;background:var(--goldg);display:flex;align-items:center;justify-content:center;font-size:3rem;margin-bottom:28px;box-shadow:0 0 0 14px rgba(212,168,67,0.08),0 20px 60px rgba(212,168,67,0.25);animation:bob 3s ease-in-out infinite;}
-@keyframes bob{0%,100%{transform:translateY(0);}50%{transform:translateY(-8px);}}
-.splash-title{font-size:2rem;font-weight:800;letter-spacing:-.03em;margin-bottom:6px;}
-.splash-sub{color:var(--muted);font-size:.9rem;margin-bottom:44px;}
-.splash-btns{width:100%;max-width:300px;display:flex;flex-direction:column;gap:12px;}
-.field{margin-bottom:16px;}
-.field label{display:block;font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:6px;}
-.field input,.field select,.field textarea{width:100%;padding:13px 16px;background:var(--card);border:1.5px solid var(--border);border-radius:var(--r2);color:var(--white);font-family:'Plus Jakarta Sans',sans-serif;font-size:.92rem;outline:none;transition:border-color .2s,box-shadow .2s;-webkit-appearance:none;}
+
+/* SETUP */
+.si{font-size:3rem;margin-bottom:18px;}
+.st{font-size:1.35rem;font-weight:800;margin-bottom:8px;}
+.sd{font-size:.84rem;color:var(--muted);line-height:1.7;margin-bottom:26px;}
+.ui{width:100%;padding:13px 14px;background:var(--card);border:1.5px solid var(--borderg);border-radius:var(--r2);color:var(--white);font-family:'JetBrains Mono',monospace;font-size:.76rem;outline:none;margin-bottom:12px;}
+
+/* SPLASH */
+.orb{width:96px;height:96px;border-radius:24px;background:var(--goldg);display:flex;align-items:center;justify-content:center;font-size:2.8rem;margin-bottom:26px;box-shadow:0 0 0 14px rgba(212,168,67,.08),0 18px 50px rgba(212,168,67,.22);animation:bob 3s ease-in-out infinite;}
+@keyframes bob{0%,100%{transform:translateY(0);}50%{transform:translateY(-7px);}}
+.spl-t{font-size:1.9rem;font-weight:800;letter-spacing:-.03em;margin-bottom:5px;}
+.spl-s{color:var(--muted);font-size:.88rem;margin-bottom:42px;}
+.spl-b{width:100%;max-width:290px;display:flex;flex-direction:column;gap:11px;}
+
+/* FIELDS */
+.field{margin-bottom:15px;}
+.field label{display:block;font-size:.69rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:5px;}
+.field input,.field select,.field textarea{width:100%;padding:12px 15px;background:var(--card);border:1.5px solid var(--border);border-radius:var(--r2);color:var(--white);font-family:'Plus Jakarta Sans',sans-serif;font-size:.9rem;outline:none;transition:border-color .2s,box-shadow .2s;-webkit-appearance:none;}
 .field input:focus,.field select:focus,.field textarea:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(212,168,67,.1);}
 .field input::placeholder,.field textarea::placeholder{color:var(--muted);}
 .field select option{background:var(--card2);}
-.field textarea{resize:none;min-height:88px;}
-.field-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
-.btn{display:flex;align-items:center;justify-content:center;gap:8px;padding:14px 24px;border:none;border-radius:var(--r2);font-family:'Plus Jakarta Sans',sans-serif;font-size:.93rem;font-weight:700;cursor:pointer;transition:all .18s;width:100%;}
-.btn-gold{background:var(--goldg);color:#0F1C2E;}
-.btn-gold:hover{opacity:.92;transform:translateY(-1px);}
-.btn-gold:disabled{opacity:.5;transform:none;cursor:not-allowed;}
-.btn-ghost{background:rgba(240,237,230,.06);color:var(--muted);border:1.5px solid var(--border);}
-.btn-ghost:hover{border-color:var(--gold);color:var(--gold);}
-.btn-red{background:var(--red-bg);color:var(--red);border:1px solid rgba(248,113,113,.2);}
-.hbar{display:flex;align-items:center;gap:12px;padding:calc(var(--safe-top) + 14px) 20px 14px;border-bottom:1px solid var(--border);flex-shrink:0;}
-.back-btn{width:36px;height:36px;border-radius:10px;background:var(--card);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:1.1rem;cursor:pointer;flex-shrink:0;}
-.hbar-title{font-weight:700;font-size:1rem;flex:1;}
-.home-head{padding:calc(var(--safe-top) + 18px) 20px 0;flex-shrink:0;}
-.hh-row{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:20px;}
-.greet-lbl{font-size:.76rem;color:var(--muted);margin-bottom:3px;}
-.user-name{font-size:1.5rem;font-weight:800;letter-spacing:-.02em;}
-.ava{width:44px;height:44px;border-radius:12px;background:var(--goldg);display:flex;align-items:center;justify-content:center;font-size:1.1rem;font-weight:800;color:#0F1C2E;cursor:pointer;flex-shrink:0;}
-.bnav{display:flex;padding:8px 0 calc(var(--safe-bottom) + 8px);background:var(--card);border-top:1px solid var(--border);flex-shrink:0;position:relative;z-index:5;}
-.nb{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;background:none;border:none;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;color:var(--muted);transition:color .15s;padding:5px 0;}
-.nb.on{color:var(--gold);}
-.nb .ni{font-size:1.3rem;line-height:1;}
-.nb .nl{font-size:.6rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;}
-.odot{width:7px;height:7px;border-radius:50%;background:var(--red);position:absolute;top:8px;right:calc(50% - 28px);display:none;}
-.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:16px 0 20px;}
-.stat{background:var(--card);border:1px solid var(--border);border-radius:var(--r2);padding:14px 10px;text-align:center;}
-.stat-v{font-size:1.7rem;font-weight:800;color:var(--gold);letter-spacing:-.02em;}
-.stat-l{font-size:.67rem;color:var(--muted);margin-top:2px;}
-.promo{border-radius:var(--r);padding:17px;margin-bottom:20px;background:linear-gradient(135deg,#152219,#0d1a10);border:1px solid rgba(52,211,153,.18);position:relative;overflow:hidden;}
-.promo::after{content:'🎉';position:absolute;right:14px;top:50%;transform:translateY(-50%);font-size:2.6rem;opacity:.3;}
-.promo-tag{font-size:.67rem;font-weight:700;color:var(--green);text-transform:uppercase;letter-spacing:.1em;margin-bottom:4px;}
-.promo-t{font-size:.97rem;font-weight:700;margin-bottom:3px;}
-.promo-s{font-size:.76rem;color:rgba(240,237,230,.45);}
-.pc{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:16px;margin-bottom:12px;cursor:pointer;transition:border-color .2s,transform .2s;}
-.pc:hover{border-color:var(--borderg);transform:translateY(-2px);}
-.pc-top{display:flex;gap:14px;align-items:flex-start;margin-bottom:12px;}
-.pc-ico{width:50px;height:50px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:1.6rem;flex-shrink:0;}
-.pc-brand{font-size:.67rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--gold);margin-bottom:2px;}
-.pc-name{font-size:.97rem;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
-.pc-model{font-size:.76rem;color:var(--muted);font-family:'JetBrains Mono',monospace;margin-top:2px;}
-.pc-ft{display:flex;align-items:center;justify-content:space-between;padding-top:11px;border-top:1px solid var(--border);}
-.pc-date{font-size:.73rem;color:var(--muted);}
-.wchip{display:inline-flex;align-items:center;gap:4px;padding:3px 9px;border-radius:20px;font-size:.66rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;}
-.w-ok{background:var(--green-bg);color:var(--green);}
-.w-exp{background:var(--red-bg);color:var(--red);}
-.w-comp{background:var(--amber-bg);color:var(--amber);}
-.tc{background:var(--card);border:1px solid var(--border);border-radius:var(--r2);padding:14px 16px;margin-bottom:10px;}
-.tc-top{display:flex;align-items:flex-start;justify-content:space-between;gap:8px;margin-bottom:8px;}
-.tc-id{font-family:'JetBrains Mono',monospace;font-size:.7rem;color:var(--gold);font-weight:600;}
-.tc-dt{font-size:.68rem;color:var(--muted);}
-.tc-prod{font-size:.83rem;font-weight:600;}
-.tc-iss{font-size:.78rem;color:var(--muted);margin-top:2px;}
-.tc-note{font-size:.73rem;color:var(--muted);font-style:italic;margin-top:8px;padding-top:8px;border-top:1px solid var(--border);}
-.tc-ref{font-size:.73rem;color:var(--blue);margin-top:4px;}
-.pill{display:inline-flex;align-items:center;gap:4px;padding:3px 8px;border-radius:20px;font-size:.63rem;font-weight:800;text-transform:uppercase;letter-spacing:.06em;flex-shrink:0;}
+.field textarea{resize:none;min-height:84px;}
+.fr{display:grid;grid-template-columns:1fr 1fr;gap:11px;}
+
+/* BUTTONS */
+.btn{display:flex;align-items:center;justify-content:center;gap:7px;padding:13px 22px;border:none;border-radius:var(--r2);font-family:'Plus Jakarta Sans',sans-serif;font-size:.91rem;font-weight:700;cursor:pointer;transition:all .17s;width:100%;}
+.bg{background:var(--goldg);color:#0F1C2E;}
+.bg:hover{opacity:.91;transform:translateY(-1px);}
+.bg:disabled{opacity:.5;transform:none;cursor:not-allowed;}
+.bgh{background:rgba(240,237,230,.06);color:var(--muted);border:1.5px solid var(--border);}
+.bgh:hover{border-color:var(--gold);color:var(--gold);}
+.br{background:var(--red-bg);color:var(--red);border:1px solid rgba(248,113,113,.2);}
+
+/* HBAR */
+.hb{display:flex;align-items:center;gap:11px;padding:calc(var(--st) + 13px) 18px 13px;border-bottom:1px solid var(--border);flex-shrink:0;}
+.bk{width:34px;height:34px;border-radius:9px;background:var(--card);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:1rem;cursor:pointer;flex-shrink:0;}
+.ht{font-weight:700;font-size:.97rem;flex:1;}
+
+/* HOME HEAD */
+.hh{padding:calc(var(--st) + 16px) 18px 0;flex-shrink:0;}
+.hhr{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:18px;}
+.gl{font-size:.74rem;color:var(--muted);margin-bottom:2px;}
+.gn{font-size:1.45rem;font-weight:800;letter-spacing:-.02em;}
+.av{width:42px;height:42px;border-radius:11px;background:var(--goldg);display:flex;align-items:center;justify-content:center;font-size:1.05rem;font-weight:800;color:#0F1C2E;cursor:pointer;flex-shrink:0;}
+
+/* NAV */
+.bn{display:flex;padding:7px 0 calc(var(--sb) + 7px);background:var(--card);border-top:1px solid var(--border);flex-shrink:0;position:relative;}
+.ni{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;background:none;border:none;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;color:var(--muted);transition:color .14s;padding:4px 0;}
+.ni.on{color:var(--gold);}
+.ni .ic{font-size:1.25rem;line-height:1;}
+.ni .lb{font-size:.59rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;}
+.od{width:6px;height:6px;border-radius:50%;background:var(--red);position:absolute;top:7px;right:calc(50% - 26px);display:none;}
+
+/* STATS */
+.sts{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin:14px 0 18px;}
+.stb{background:var(--card);border:1px solid var(--border);border-radius:var(--r2);padding:13px 9px;text-align:center;}
+.sv{font-size:1.6rem;font-weight:800;color:var(--gold);letter-spacing:-.02em;}
+.sl{font-size:.65rem;color:var(--muted);margin-top:2px;}
+
+/* PROMO */
+.promo{border-radius:var(--r);padding:15px;margin-bottom:18px;background:linear-gradient(135deg,#152219,#0d1a10);border:1px solid rgba(52,211,153,.18);position:relative;overflow:hidden;}
+.promo::after{content:'🎉';position:absolute;right:12px;top:50%;transform:translateY(-50%);font-size:2.4rem;opacity:.28;}
+.pt{font-size:.65rem;font-weight:700;color:var(--green);text-transform:uppercase;letter-spacing:.1em;margin-bottom:3px;}
+.pm{font-size:.94rem;font-weight:700;margin-bottom:2px;}
+.ps{font-size:.74rem;color:rgba(240,237,230,.42);}
+
+/* PRODUCT CARD */
+.pc{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:15px;margin-bottom:11px;cursor:pointer;transition:border-color .2s,transform .18s;}
+.pc:active{transform:scale(.98);}
+.pct{display:flex;gap:13px;align-items:flex-start;margin-bottom:11px;}
+.pi{width:48px;height:48px;border-radius:13px;display:flex;align-items:center;justify-content:center;font-size:1.5rem;flex-shrink:0;}
+.pbr{font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--gold);margin-bottom:1px;}
+.pn{font-size:.94rem;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.pm2{font-size:.74rem;color:var(--muted);font-family:'JetBrains Mono',monospace;margin-top:1px;}
+.pf{display:flex;align-items:center;justify-content:space-between;padding-top:10px;border-top:1px solid var(--border);}
+.pd{font-size:.71rem;color:var(--muted);}
+.wc{display:inline-flex;align-items:center;gap:4px;padding:3px 8px;border-radius:20px;font-size:.64rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;}
+.wok{background:var(--green-bg);color:var(--green);}
+.wex{background:var(--red-bg);color:var(--red);}
+.wco{background:var(--amber-bg);color:var(--amber);}
+
+/* TICKET CARD */
+.tc{background:var(--card);border:1px solid var(--border);border-radius:var(--r2);padding:13px 15px;margin-bottom:9px;}
+.tct{display:flex;align-items:flex-start;justify-content:space-between;gap:7px;margin-bottom:7px;}
+.tid{font-family:'JetBrains Mono',monospace;font-size:.68rem;color:var(--gold);font-weight:600;}
+.tdt{font-size:.66rem;color:var(--muted);}
+.tpr{font-size:.81rem;font-weight:600;}
+.tis{font-size:.76rem;color:var(--muted);margin-top:2px;}
+.tno{font-size:.71rem;color:var(--muted);font-style:italic;margin-top:7px;padding-top:7px;border-top:1px solid var(--border);}
+.tco{font-size:.71rem;color:var(--blue);margin-top:3px;}
+
+/* PILLS */
+.pill{display:inline-flex;align-items:center;gap:4px;padding:2px 8px;border-radius:20px;font-size:.61rem;font-weight:800;text-transform:uppercase;letter-spacing:.06em;flex-shrink:0;}
 .pill::before{content:'';width:5px;height:5px;border-radius:50%;background:currentColor;}
-.p-open{background:var(--amber-bg);color:var(--amber);}
-.p-prog{background:var(--blue-bg);color:var(--blue);}
-.p-res{background:var(--green-bg);color:var(--green);}
-.p-clo{background:rgba(123,144,168,.12);color:var(--muted);}
-.dh{padding:calc(var(--safe-top) + 14px) 20px 0;flex-shrink:0;}
-.d-icon{width:70px;height:70px;border-radius:18px;display:flex;align-items:center;justify-content:center;font-size:2rem;margin:16px 0 12px;}
-.d-brand{font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--gold);margin-bottom:3px;}
-.d-name{font-size:1.45rem;font-weight:800;letter-spacing:-.02em;margin-bottom:2px;}
-.d-model{font-size:.83rem;color:var(--muted);font-family:'JetBrains Mono',monospace;}
-.igrid{display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--border);border-radius:var(--r2);overflow:hidden;margin:16px 0;}
-.igc{background:var(--card);padding:13px 15px;border-bottom:1px solid var(--border);}
+.po{background:var(--amber-bg);color:var(--amber);}
+.pp{background:var(--blue-bg);color:var(--blue);}
+.pr{background:var(--green-bg);color:var(--green);}
+.pc2{background:rgba(123,144,168,.11);color:var(--muted);}
+
+/* DETAIL */
+.dh{padding:calc(var(--st) + 13px) 18px 0;flex-shrink:0;}
+.dic{width:66px;height:66px;border-radius:17px;display:flex;align-items:center;justify-content:center;font-size:1.9rem;margin:14px 0 11px;}
+.dbr{font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--gold);margin-bottom:2px;}
+.dn{font-size:1.4rem;font-weight:800;letter-spacing:-.02em;margin-bottom:2px;}
+.dm{font-size:.81rem;color:var(--muted);font-family:'JetBrains Mono',monospace;}
+.ig{display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--border);border-radius:var(--r2);overflow:hidden;margin:14px 0;}
+.igc{background:var(--card);padding:12px 14px;border-bottom:1px solid var(--border);}
 .igc:nth-last-child(-n+2){border-bottom:none;}
 .igc:nth-child(odd){border-right:1px solid var(--border);}
-.igc-l{font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:4px;}
-.igc-v{font-size:.87rem;font-weight:600;}
-.ag{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:20px;}
-.at{background:var(--card);border:1px solid var(--border);border-radius:var(--r2);padding:15px 10px;display:flex;flex-direction:column;align-items:center;gap:6px;cursor:pointer;transition:all .18s;font-family:'Plus Jakarta Sans',sans-serif;font-size:.8rem;font-weight:700;text-decoration:none;}
-.at:hover{transform:translateY(-2px);}
-.at-i{font-size:1.4rem;}
-.at-c{color:var(--amber);border-color:rgba(251,191,36,.2);}
-.at-p{color:var(--blue);border-color:rgba(96,165,250,.2);}
-.sec-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;}
-.sec-t{font-size:.97rem;font-weight:700;}
-.prod-chip{display:flex;align-items:center;gap:10px;padding:10px 14px;background:var(--card);border-radius:var(--r2);margin-bottom:20px;}
-.sring{width:90px;height:90px;border-radius:50%;background:var(--green-bg);border:2px solid var(--green);display:flex;align-items:center;justify-content:center;font-size:2.7rem;margin-bottom:24px;animation:pop .45s cubic-bezier(.34,1.56,.64,1);}
+.igl{font-size:.63rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:3px;}
+.igv{font-size:.85rem;font-weight:600;}
+.ag{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-bottom:18px;}
+.at{background:var(--card);border:1px solid var(--border);border-radius:var(--r2);padding:14px 9px;display:flex;flex-direction:column;align-items:center;gap:5px;cursor:pointer;transition:all .17s;font-family:'Plus Jakarta Sans',sans-serif;font-size:.78rem;font-weight:700;text-decoration:none;}
+.at:active{transform:scale(.97);}
+.ati{font-size:1.35rem;}
+.atc{color:var(--amber);border-color:rgba(251,191,36,.2);}
+.atp{color:var(--blue);border-color:rgba(96,165,250,.2);}
+.sr{display:flex;align-items:center;justify-content:space-between;margin-bottom:11px;}
+.srt{font-size:.94rem;font-weight:700;}
+.pchip{display:flex;align-items:center;gap:9px;padding:9px 13px;background:var(--card);border-radius:var(--r2);margin-bottom:18px;}
+
+/* SUCCESS */
+.ring{width:86px;height:86px;border-radius:50%;background:var(--green-bg);border:2px solid var(--green);display:flex;align-items:center;justify-content:center;font-size:2.5rem;margin-bottom:22px;animation:pop .4s cubic-bezier(.34,1.56,.64,1);}
 @keyframes pop{from{transform:scale(.4);opacity:0;}to{transform:scale(1);opacity:1;}}
-.tbox{background:var(--card);border:1px solid var(--borderg);border-radius:var(--r);padding:22px;width:100%;margin:20px 0;text-align:center;}
-.tbox-l{font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:8px;}
-.tbox-id{font-family:'JetBrains Mono',monospace;font-size:1.4rem;font-weight:700;color:var(--gold);letter-spacing:.05em;}
-.tbox-s{font-size:.76rem;color:var(--muted);margin-top:6px;}
-.loader{display:flex;align-items:center;justify-content:center;padding:48px;flex-direction:column;gap:14px;}
-.spin{width:30px;height:30px;border:3px solid rgba(212,168,67,.2);border-top-color:var(--gold);border-radius:50%;animation:spin .7s linear infinite;}
+.tbox{background:var(--card);border:1px solid var(--borderg);border-radius:var(--r);padding:20px;width:100%;margin:18px 0;text-align:center;}
+.tbl{font-size:.66rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:7px;}
+.tbi{font-family:'JetBrains Mono',monospace;font-size:1.35rem;font-weight:700;color:var(--gold);letter-spacing:.05em;}
+.tbs{font-size:.74rem;color:var(--muted);margin-top:5px;}
+
+/* LOADER & EMPTY */
+.ldr{display:flex;align-items:center;justify-content:center;padding:44px;flex-direction:column;gap:12px;}
+.spin{width:28px;height:28px;border:3px solid rgba(212,168,67,.2);border-top-color:var(--gold);border-radius:50%;animation:spin .7s linear infinite;}
 @keyframes spin{to{transform:rotate(360deg);}}
-.loader p{font-size:.83rem;color:var(--muted);}
-.empty{text-align:center;padding:36px 20px;color:var(--muted);}
-.empty span{font-size:2.4rem;display:block;margin-bottom:10px;}
-.empty p{font-size:.86rem;line-height:1.6;}
-#toast{position:fixed;bottom:calc(var(--safe-bottom) + 78px);left:50%;transform:translateX(-50%) translateY(16px);background:var(--card2);border:1px solid var(--borderg);color:var(--white);padding:10px 22px;border-radius:30px;font-size:.82rem;font-weight:600;white-space:nowrap;opacity:0;transition:all .3s;z-index:9999;pointer-events:none;box-shadow:0 8px 32px rgba(0,0,0,.3);}
+.ldr p{font-size:.81rem;color:var(--muted);}
+.empty{text-align:center;padding:34px 18px;color:var(--muted);}
+.empty span{font-size:2.2rem;display:block;margin-bottom:9px;}
+.empty p{font-size:.84rem;line-height:1.6;}
+
+/* TOAST */
+#toast{position:fixed;bottom:calc(var(--sb) + 74px);left:50%;transform:translateX(-50%) translateY(14px);background:var(--card2);border:1px solid var(--borderg);color:var(--white);padding:9px 20px;border-radius:28px;font-size:.8rem;font-weight:600;white-space:nowrap;opacity:0;transition:all .28s;z-index:9999;pointer-events:none;box-shadow:0 6px 28px rgba(0,0,0,.3);}
 #toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
-.pad{padding:0 20px;} .padv{padding:16px 20px;} .pb80{padding-bottom:80px;}
-.mt12{margin-top:12px;} .mt16{margin-top:16px;} .mt20{margin-top:20px;}
+
+.pad{padding:0 18px;}.padv{padding:14px 18px;}.pb80{padding-bottom:80px;}
+.mt12{margin-top:12px;}.mt16{margin-top:16px;}.mt20{margin-top:20px;}
 </style>
 </head>
 <body>
 
 <!-- SETUP -->
-<div class="screen center active" id="s-setup">
-  <div class="setup-icon">⚙️</div>
-  <div class="setup-title">One-Time Setup</div>
-  <div class="setup-desc">Paste the Server URL that Mittal Electronics gave you. You only need to do this once.</div>
-  <input class="url-inp" type="url" id="setup-url" placeholder="https://script.google.com/macros/s/…/exec">
-  <button class="btn btn-gold" onclick="saveUrl()">Connect & Start →</button>
-  <p style="margin-top:14px;font-size:.74rem;color:var(--muted);">One-time only. Won't ask again.</p>
+<div class="screen cx active" id="s-setup">
+  <div class="si">⚙️</div>
+  <div class="st">One-Time Setup</div>
+  <div class="sd">Paste the Server URL from Mittal Electronics. You only do this once — never again.</div>
+  <input class="ui" type="url" id="su" placeholder="https://script.google.com/macros/s/…/exec">
+  <button class="btn bg" onclick="saveUrl()">Connect & Start →</button>
+  <p style="margin-top:12px;font-size:.72rem;color:var(--muted);">One-time only.</p>
 </div>
 
 <!-- SPLASH -->
-<div class="screen center" id="s-splash">
-  <div class="splash-orb">🏪</div>
-  <div class="splash-title">Mittal Electronics</div>
-  <div class="splash-sub">Your products. Your warranty. One app.</div>
-  <div class="splash-btns">
-    <button class="btn btn-gold" onclick="go('s-register')">Create Account →</button>
-    <button class="btn btn-ghost" onclick="go('s-login')">Already registered? Sign In</button>
+<div class="screen cx" id="s-splash">
+  <div class="orb">🏪</div>
+  <div class="spl-t">Mittal Electronics</div>
+  <div class="spl-s">Your products. Your warranty. One app.</div>
+  <div class="spl-b">
+    <button class="btn bg" onclick="go('s-reg')">Create Account →</button>
+    <button class="btn bgh" onclick="go('s-login')">Already registered? Sign In</button>
   </div>
 </div>
 
 <!-- REGISTER -->
-<div class="screen" id="s-register">
-  <div class="hbar"><div class="back-btn" onclick="go('s-splash')">←</div><div class="hbar-title">Create Account</div></div>
+<div class="screen" id="s-reg">
+  <div class="hb"><div class="bk" onclick="go('s-splash')">←</div><div class="ht">Create Account</div></div>
   <div class="sb padv pb80">
-    <p style="color:var(--muted);font-size:.84rem;margin-bottom:20px;line-height:1.6;">Register once — see all your products and raise complaints anytime.</p>
-    <div class="field"><label>Full Name ✱</label><input type="text" id="r-name" placeholder="e.g. Pravin Deshmukh" autocomplete="name"></div>
-    <div class="field"><label>Mobile Number ✱</label><input type="tel" id="r-phone" placeholder="10-digit mobile" maxlength="10" inputmode="numeric"></div>
-    <div class="field"><label>Email ID</label><input type="email" id="r-email" placeholder="optional"></div>
-    <div class="field"><label>Full Address ✱</label><input type="text" id="r-address" placeholder="House no, Street, Area"></div>
-    <div class="field-row">
-      <div class="field"><label>City ✱</label><input type="text" id="r-city" placeholder="Akola"></div>
-      <div class="field"><label>Pin Code ✱</label><input type="text" id="r-pin" placeholder="444001" maxlength="6" inputmode="numeric"></div>
+    <p style="color:var(--muted);font-size:.82rem;margin-bottom:18px;line-height:1.6;">Register once — track all your products and complaints forever.</p>
+    <div class="field"><label>Full Name ✱</label><input type="text" id="rn" placeholder="e.g. Pravin Deshmukh" autocomplete="name"></div>
+    <div class="field"><label>Mobile Number ✱</label><input type="tel" id="rp" placeholder="10-digit mobile" maxlength="10" inputmode="numeric"></div>
+    <div class="field"><label>Email ID</label><input type="email" id="re" placeholder="optional"></div>
+    <div class="field"><label>Full Address ✱</label><input type="text" id="ra" placeholder="House no, Street, Area"></div>
+    <div class="fr">
+      <div class="field"><label>City ✱</label><input type="text" id="rc" placeholder="Akola"></div>
+      <div class="field"><label>Pin Code ✱</label><input type="text" id="rz" placeholder="444001" maxlength="6" inputmode="numeric"></div>
     </div>
-    <div class="mt16"><button class="btn btn-gold" id="reg-btn" onclick="doRegister()">Create My Account →</button></div>
-    <div class="mt12"><button class="btn btn-ghost" onclick="go('s-login')">Already have an account?</button></div>
+    <div class="mt16"><button class="btn bg" id="rb" onclick="doReg()">Create My Account →</button></div>
+    <div class="mt12"><button class="btn bgh" onclick="go('s-login')">Already have an account?</button></div>
   </div>
 </div>
 
 <!-- LOGIN -->
 <div class="screen" id="s-login">
-  <div class="hbar"><div class="back-btn" onclick="go('s-splash')">←</div><div class="hbar-title">Sign In</div></div>
+  <div class="hb"><div class="bk" onclick="go('s-splash')">←</div><div class="ht">Sign In</div></div>
   <div class="sb padv">
-    <p style="color:var(--muted);font-size:.84rem;margin-bottom:24px;">Enter your registered mobile number.</p>
-    <div class="field"><label>Mobile Number ✱</label><input type="tel" id="l-phone" placeholder="10-digit mobile" maxlength="10" inputmode="numeric"></div>
-    <div class="mt16"><button class="btn btn-gold" onclick="doLogin()">Sign In →</button></div>
-    <div class="mt12"><button class="btn btn-ghost" onclick="go('s-register')">New customer? Register</button></div>
+    <p style="color:var(--muted);font-size:.82rem;margin-bottom:22px;">Enter your registered mobile number.</p>
+    <div class="field"><label>Mobile Number ✱</label><input type="tel" id="lp" placeholder="10-digit mobile" maxlength="10" inputmode="numeric"></div>
+    <div class="mt16"><button class="btn bg" onclick="doLogin()">Sign In →</button></div>
+    <div class="mt12"><button class="btn bgh" onclick="go('s-reg')">New customer? Register</button></div>
   </div>
 </div>
 
 <!-- HOME -->
 <div class="screen" id="s-home">
-  <div class="home-head">
-    <div class="hh-row">
-      <div><div class="greet-lbl">Welcome back,</div><div class="user-name" id="h-name">—</div></div>
-      <div class="ava" id="h-ava" onclick="switchTab('profile')">M</div>
+  <div class="hh">
+    <div class="hhr">
+      <div><div class="gl">Welcome back,</div><div class="gn" id="hn">—</div></div>
+      <div class="av" id="hav" onclick="st('profile')">M</div>
     </div>
   </div>
-  <div class="sb" id="tab-body" style="padding:0 20px;"></div>
-  <nav class="bnav">
-    <button class="nb on" id="nb-products" onclick="switchTab('products')"><span class="ni">📦</span><span class="nl">Products</span></button>
-    <button class="nb" id="nb-tickets" onclick="switchTab('tickets')" style="position:relative;"><span class="ni">🎫</span><span class="nl">Tickets</span><span class="odot" id="odot"></span></button>
-    <button class="nb" id="nb-profile" onclick="switchTab('profile')"><span class="ni">👤</span><span class="nl">Profile</span></button>
+  <div class="sb" id="tb" style="padding:0 18px;"></div>
+  <nav class="bn">
+    <button class="ni on" id="nb-products" onclick="st('products')"><span class="ic">📦</span><span class="lb">Products</span></button>
+    <button class="ni" id="nb-tickets" onclick="st('tickets')" style="position:relative;"><span class="ic">🎫</span><span class="lb">Tickets</span><span class="od" id="od"></span></button>
+    <button class="ni" id="nb-profile" onclick="st('profile')"><span class="ic">👤</span><span class="lb">Profile</span></button>
   </nav>
 </div>
 
-<!-- DETAIL -->
-<div class="screen" id="s-detail">
+<!-- PRODUCT DETAIL -->
+<div class="screen" id="s-det">
   <div class="dh">
-    <div class="hbar" style="padding:0;border:none;"><div class="back-btn" onclick="go('s-home')">←</div><div class="hbar-title">Product Details</div></div>
-    <div class="d-icon" id="di-ico-wrap"><span id="di-ico">📦</span></div>
-    <div class="d-brand" id="di-brand">—</div>
-    <div class="d-name" id="di-name">—</div>
-    <div class="d-model" id="di-model">—</div>
+    <div class="hb" style="padding:0;border:none;"><div class="bk" onclick="go('s-home')">←</div><div class="ht">Product Details</div></div>
+    <div class="dic" id="diw"><span id="dii">📦</span></div>
+    <div class="dbr" id="dib">—</div><div class="dn" id="din">—</div><div class="dm" id="dim">—</div>
   </div>
-  <div class="sb" style="padding:0 20px 20px;">
-    <div class="igrid">
-      <div class="igc"><div class="igc-l">Purchase Date</div><div class="igc-v" id="di-date">—</div></div>
-      <div class="igc"><div class="igc-l">Warranty Until</div><div class="igc-v" id="di-war">—</div></div>
-      <div class="igc"><div class="igc-l">Invoice No.</div><div class="igc-v" id="di-inv">—</div></div>
-      <div class="igc"><div class="igc-l">Status</div><div class="igc-v" id="di-sts">—</div></div>
+  <div class="sb" style="padding:0 18px 18px;">
+    <div class="ig">
+      <div class="igc"><div class="igl">Purchase Date</div><div class="igv" id="did">—</div></div>
+      <div class="igc"><div class="igl">Warranty Until</div><div class="igv" id="diw2">—</div></div>
+      <div class="igc"><div class="igl">Invoice No.</div><div class="igv" id="diin">—</div></div>
+      <div class="igc"><div class="igl">Status</div><div class="igv" id="dis">—</div></div>
     </div>
     <div class="ag">
-      <button class="at at-c" onclick="go('s-complaint')"><span class="at-i">🔧</span>Raise Complaint</button>
-      <a class="at at-p" href="tel:+917000000000"><span class="at-i">📞</span>Call Service</a>
+      <button class="at atc" onclick="go('s-comp')"><span class="ati">🔧</span>Raise Complaint</button>
+      <a class="at atp" href="tel:+917000000000"><span class="ati">📞</span>Call Service</a>
     </div>
-    <div class="sec-row"><div class="sec-t">Complaint History</div></div>
-    <div id="di-tix"></div>
+    <div class="sr"><div class="srt">Complaint History</div></div>
+    <div id="dtix"></div>
   </div>
 </div>
 
 <!-- COMPLAINT -->
-<div class="screen" id="s-complaint">
-  <div class="hbar"><div class="back-btn" onclick="go('s-detail')">←</div><div class="hbar-title">Raise Complaint</div></div>
+<div class="screen" id="s-comp">
+  <div class="hb"><div class="bk" onclick="go('s-det')">←</div><div class="ht">Raise Complaint</div></div>
   <div class="sb padv pb80">
-    <div class="prod-chip"><span id="cf-ico" style="font-size:1.4rem;">📦</span><div><div style="font-size:.67rem;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:.08em;" id="cf-brand">—</div><div style="font-size:.9rem;font-weight:700;" id="cf-name">—</div></div></div>
+    <div class="pchip"><span id="cfi" style="font-size:1.35rem;">📦</span><div><div style="font-size:.65rem;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:.08em;" id="cfb">—</div><div style="font-size:.88rem;font-weight:700;" id="cfn">—</div></div></div>
     <div class="field"><label>Type of Issue ✱</label>
-      <select id="cf-type">
+      <select id="cft">
         <option value="">Select issue type</option>
         <option>Not cooling / Not working</option>
         <option>Making noise or vibrating</option>
@@ -253,196 +273,327 @@ body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--bg);color:var(-
         <option>Other</option>
       </select>
     </div>
-    <div class="field"><label>Describe the Problem</label><textarea id="cf-desc" placeholder="Tell us what is happening…"></textarea></div>
+    <div class="field"><label>Describe the Problem</label><textarea id="cfd" placeholder="Tell us what is happening…"></textarea></div>
     <div class="field"><label>Best Time to Call</label>
-      <select id="cf-time"><option>Anytime</option><option>Morning 9am–12pm</option><option>Afternoon 12pm–4pm</option><option>Evening 4pm–8pm</option></select>
+      <select id="cfti"><option>Anytime</option><option>Morning 9am–12pm</option><option>Afternoon 12pm–4pm</option><option>Evening 4pm–8pm</option></select>
     </div>
-    <div class="mt16"><button class="btn btn-gold" id="sub-btn" onclick="submitComplaint()">Submit Complaint →</button></div>
+    <div class="mt16"><button class="btn bg" id="sb2" onclick="subComp()">Submit Complaint →</button></div>
   </div>
 </div>
 
 <!-- SUCCESS -->
-<div class="screen center" id="s-success">
-  <div class="sring">✓</div>
-  <div style="font-size:1.4rem;font-weight:800;margin-bottom:8px;">Complaint Registered!</div>
-  <p style="color:var(--muted);font-size:.86rem;text-align:center;line-height:1.6;margin-bottom:4px;">Our team will call you within 4 hours. Save your ticket ID below.</p>
-  <div class="tbox"><div class="tbox-l">Your Ticket ID</div><div class="tbox-id" id="s-tid">—</div><div class="tbox-s" id="s-tsub">—</div></div>
-  <button class="btn btn-gold" style="max-width:280px;" onclick="goHome()">Back to My Products</button>
+<div class="screen cx" id="s-ok">
+  <div class="ring">✓</div>
+  <div style="font-size:1.35rem;font-weight:800;margin-bottom:7px;">Complaint Registered!</div>
+  <p style="color:var(--muted);font-size:.84rem;text-align:center;line-height:1.6;margin-bottom:3px;">Our team will call you within 4 hours. Save your ticket ID.</p>
+  <div class="tbox"><div class="tbl">Your Ticket ID</div><div class="tbi" id="stid">—</div><div class="tbs" id="stsub">—</div></div>
+  <button class="btn bg" style="max-width:270px;" onclick="goHome()">Back to My Products</button>
 </div>
 
 <div id="toast"></div>
 
 <script>
-// CONFIG
-let SRV = localStorage.getItem('me_srv') || '';
-let CU  = JSON.parse(localStorage.getItem('me_sess') || 'null');
-let AP  = null;
-let TAB = 'products';
+// ══════════════════════════════════════════════════
+// CONFIG — Uses Google Apps Script via GET (no CORS)
+// ══════════════════════════════════════════════════
+const JSONBIN_MASTER = '$2a$10$KwMQiw59h6v.iYZkBxF6ZOl0UKkH.pIaAA8vLG684aSqlTMtChFp6';
+const JSONBIN_ACCESS = '$2a$10$dyKO4meM/TjdPQS6J8Iob.oLQ/D26sqj4qS8FSIQ498qwLQjGiGQu';
+const JSONBIN_BASE   = 'https://api.jsonbin.io/v3/b';
+
+let SRV = localStorage.getItem('me_srv2') || '';
+let CU  = JSON.parse(localStorage.getItem('me_sess2') || 'null');
+let AP  = null, TAB = 'products';
 let _prods = [], _tix = [];
 
+// BIN IDs stored after first creation
+let BINS = JSON.parse(localStorage.getItem('me_bins') || '{}');
+
+// ── JSONBIN API ──────────────────────────────────
+async function jbGet(binId) {
+  const r = await fetch(`${JSONBIN_BASE}/${binId}/latest`, {
+    headers: { 'X-Access-Key': JSONBIN_ACCESS }
+  });
+  const j = await r.json();
+  return j.record;
+}
+
+async function jbSet(binId, data) {
+  await fetch(`${JSONBIN_BASE}/${binId}`, {
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json', 'X-Access-Key': JSONBIN_ACCESS },
+    body: JSON.stringify(data)
+  });
+}
+
+async function jbCreate(name, data) {
+  const r = await fetch(JSONBIN_BASE, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'X-Master-Key': JSONBIN_MASTER,
+      'X-Bin-Name': name,
+      'X-Bin-Private': 'false'
+    },
+    body: JSON.stringify(data)
+  });
+  const j = await r.json();
+  return j.metadata.id;
+}
+
+async function ensureBins() {
+  if (BINS.customers && BINS.products && BINS.tickets && BINS.promos) return;
+  toast('Setting up database… (first time only)');
+  if (!BINS.customers) BINS.customers = await jbCreate('me_customers', []);
+  if (!BINS.products)  BINS.products  = await jbCreate('me_products',  []);
+  if (!BINS.tickets)   BINS.tickets   = await jbCreate('me_tickets',   []);
+  if (!BINS.promos)    BINS.promos    = await jbCreate('me_promos',    []);
+  localStorage.setItem('me_bins', JSON.stringify(BINS));
+}
+
+// ── URL SETUP (kept for backward compat, not needed for JSONBin) ─
 function saveUrl() {
-  const u = document.getElementById('setup-url').value.trim();
-  if (!u.startsWith('https://')) { toast('Paste a valid URL starting with https://'); return; }
-  localStorage.setItem('me_srv', u);
+  const u = document.getElementById('su').value.trim();
+  if (!u) { toast('Please paste the Server URL'); return; }
+  localStorage.setItem('me_srv2', u);
   SRV = u;
   CU ? (renderHome(), go('s-home')) : go('s-splash');
 }
 
-// ALL API CALLS USE GET — no CORS issues
-async function API(params) {
-  const url = SRV + '?' + new URLSearchParams(params);
-  const r = await fetch(url, { method: 'GET', redirect: 'follow' });
-  const text = await r.text();
-  return JSON.parse(text);
-}
-
+// ── NAVIGATION ───────────────────────────────────
 function go(id) {
   document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
   document.getElementById(id).classList.add('active');
 }
-function goHome() { go('s-home'); switchTab('products'); }
+function goHome() { go('s-home'); st('products'); }
 
-async function doRegister() {
-  const btn = document.getElementById('reg-btn');
-  const name = v('r-name'), phone = v('r-phone'), email = v('r-email'),
-        address = v('r-address'), city = v('r-city'), pinCode = v('r-pin');
+// ── AUTH ─────────────────────────────────────────
+async function doReg() {
+  const btn = document.getElementById('rb');
+  const name = v('rn'), phone = v('rp'), email = v('re'),
+        address = v('ra'), city = v('rc'), pinCode = v('rz');
   if (!name||!phone||!address||!city||!pinCode) { toast('Please fill all required fields'); return; }
-  if (phone.length!==10) { toast('Enter a valid 10-digit number'); return; }
+  if (phone.length!==10) { toast('Enter a valid 10-digit mobile number'); return; }
   if (pinCode.length!==6) { toast('Enter a valid 6-digit pin code'); return; }
   btn.disabled=true; btn.textContent='Creating account…';
   try {
-    const d = await API({action:'registerCustomer',name,phone,email,address,city,pinCode});
-    if (!d.success) { toast(d.message||'Registration failed'); return; }
-    CU = d.customer;
-    localStorage.setItem('me_sess', JSON.stringify(CU));
+    await ensureBins();
+    const customers = await jbGet(BINS.customers);
+    if (customers.find(c => c.phone === phone)) { toast('Mobile already registered. Please sign in.'); return; }
+    const now = new Date().toLocaleDateString('en-IN', { day:'2-digit', month:'short', year:'numeric' });
+    const cust = { phone, name, email, address, city, pinCode, registeredOn: now };
+    customers.push(cust);
+    await jbSet(BINS.customers, customers);
+    CU = cust;
+    localStorage.setItem('me_sess2', JSON.stringify(CU));
     renderHome(); go('s-home');
-    toast('Welcome, '+name.split(' ')[0]+'! 🎉');
-  } catch(e) { toast('Cannot connect. Check internet and try again.'); console.error(e); }
+    toast('Welcome, ' + name.split(' ')[0] + '! 🎉');
+  } catch(e) { console.error(e); toast('Error: ' + e.message); }
   finally { btn.disabled=false; btn.textContent='Create My Account →'; }
 }
 
 async function doLogin() {
-  const phone = v('l-phone');
+  const phone = v('lp');
   if (!phone||phone.length!==10) { toast('Enter a valid 10-digit number'); return; }
   try {
-    const d = await API({action:'getCustomer',phone});
-    if (!d.success) { toast('No account found. Please register first.'); return; }
-    CU = d.customer;
-    localStorage.setItem('me_sess', JSON.stringify(CU));
+    await ensureBins();
+    const customers = await jbGet(BINS.customers);
+    const cust = customers.find(c => c.phone === phone);
+    if (!cust) { toast('No account found. Please register first.'); return; }
+    CU = cust;
+    localStorage.setItem('me_sess2', JSON.stringify(CU));
     renderHome(); go('s-home');
   } catch(e) { toast('Cannot connect. Check internet.'); }
 }
 
 function doLogout() {
-  localStorage.removeItem('me_sess');
+  localStorage.removeItem('me_sess2');
   CU=null; AP=null; go('s-splash');
 }
 
+// ── HOME ─────────────────────────────────────────
 function renderHome() {
-  document.getElementById('h-name').textContent = CU.name.split(' ')[0];
-  document.getElementById('h-ava').textContent  = CU.name[0].toUpperCase();
-  switchTab(TAB);
+  document.getElementById('hn').textContent  = CU.name.split(' ')[0];
+  document.getElementById('hav').textContent = CU.name[0].toUpperCase();
+  st(TAB);
 }
 
-function switchTab(tab) {
+function st(tab) {
   TAB = tab;
-  ['products','tickets','profile'].forEach(t => document.getElementById('nb-'+t)?.classList.toggle('on',t===tab));
-  const body = document.getElementById('tab-body');
-  body.innerHTML = '<div class="loader"><div class="spin"></div><p>Loading…</p></div>';
-  if (tab==='products') loadProducts(body);
-  else if (tab==='tickets') loadTickets(body);
-  else renderProfile(body);
+  ['products','tickets','profile'].forEach(t => document.getElementById('nb-'+t)?.classList.toggle('on', t===tab));
+  const body = document.getElementById('tb');
+  body.innerHTML = '<div class="ldr"><div class="spin"></div><p>Loading…</p></div>';
+  if (tab==='products') loadProds(body);
+  else if (tab==='tickets') loadTix(body);
+  else renderProf(body);
 }
 
-async function loadProducts(body) {
+// ── PRODUCTS ─────────────────────────────────────
+async function loadProds(body) {
   try {
-    const [pR,tR,proR] = await Promise.all([
-      API({action:'getProducts',phone:CU.phone}),
-      API({action:'getTickets',phone:CU.phone}),
-      API({action:'getPromos'})
+    await ensureBins();
+    const [prods, tix, promos] = await Promise.all([
+      jbGet(BINS.products),
+      jbGet(BINS.tickets),
+      jbGet(BINS.promos)
     ]);
-    _prods=pR.products||[]; _tix=tR.tickets||[];
-    const promos=proR.promos||[];
-    const openN=_tix.filter(t=>t.status==='Open').length;
-    const odot=document.getElementById('odot');
-    odot.style.display=openN?'block':'none';
-    let h='';
-    h+=`<div class="stats"><div class="stat"><div class="stat-v">${_prods.length}</div><div class="stat-l">Products</div></div><div class="stat"><div class="stat-v">${_tix.length}</div><div class="stat-l">Tickets</div></div><div class="stat"><div class="stat-v">${openN}</div><div class="stat-l">Open</div></div></div>`;
-    if(promos.length){const p=promos[promos.length-1];h+=`<div class="promo"><div class="promo-tag">🎊 ${p.tag||'Offer'}</div><div class="promo-t">${p.title}</div><div class="promo-s">${p.subText||''}</div></div>`;}
-    h+=`<div class="sec-row"><div class="sec-t">My Products</div></div>`;
-    if(!_prods.length){h+=`<div class="empty"><span>📦</span><p>No products yet.<br>Your products appear here after purchase from Mittal Electronics.</p></div>`;}
-    else{_prods.forEach(p=>{const pt=_tix.filter(t=>t.productId===p.productId);const hasO=pt.some(t=>t.status==='Open'||t.status==='In Progress');const wOk=warOk(p.purchaseDate,p.warrantyYears);const cc=hasO?'w-comp':wOk?'w-ok':'w-exp';const ct=hasO?'Complaint Open':wOk?'Under Warranty':'Warranty Expired';h+=`<div class="pc" onclick="openProd('${p.productId}')"><div class="pc-top"><div class="pc-ico" style="background:${catBg(p.category)}">${catIco(p.category)}</div><div style="flex:1;min-width:0;"><div class="pc-brand">${p.brand}</div><div class="pc-name">${p.productName}</div><div class="pc-model">${p.modelNumber}</div></div><div style="color:var(--muted);font-size:1.1rem;margin-top:4px;">›</div></div><div class="pc-ft"><div class="pc-date">Purchased ${fd(p.purchaseDate)}</div><div class="wchip ${cc}">${ct}</div></div></div>`;});}
-    body.innerHTML='<div style="padding-bottom:20px">'+h+'</div>';
-  } catch(e){body.innerHTML=`<div class="empty"><span>⚠️</span><p>Could not load. Check internet.</p></div>`;}
+    _prods = prods.filter(p => p.customerPhone === CU.phone);
+    _tix   = tix.filter(t => t.customerPhone === CU.phone);
+    const openN = _tix.filter(t => t.status==='Open').length;
+    const od = document.getElementById('od');
+    od.style.display = openN ? 'block' : 'none';
+
+    let h = '';
+    h += `<div class="sts"><div class="stb"><div class="sv">${_prods.length}</div><div class="sl">Products</div></div><div class="stb"><div class="sv">${_tix.length}</div><div class="sl">Tickets</div></div><div class="stb"><div class="sv">${openN}</div><div class="sl">Open</div></div></div>`;
+
+    const activePromos = promos.filter(p => p.active);
+    if (activePromos.length) {
+      const p = activePromos[activePromos.length-1];
+      h += `<div class="promo"><div class="pt">🎊 ${p.tag||'Offer'}</div><div class="pm">${p.title}</div><div class="ps">${p.subText||''}</div></div>`;
+    }
+
+    h += `<div class="sr"><div class="srt">My Products</div></div>`;
+    if (!_prods.length) {
+      h += `<div class="empty"><span>📦</span><p>No products yet.<br>Your products appear here after purchase from Mittal Electronics.</p></div>`;
+    } else {
+      _prods.forEach(p => {
+        const pt   = _tix.filter(t => t.productId===p.productId);
+        const hasO = pt.some(t => t.status==='Open'||t.status==='In Progress');
+        const wOk  = warOk(p.purchaseDate, p.warrantyYears);
+        const cc   = hasO?'wco':wOk?'wok':'wex';
+        const ct   = hasO?'Complaint Open':wOk?'Under Warranty':'Warranty Expired';
+        h += `<div class="pc" onclick="openProd('${p.productId}')">
+          <div class="pct">
+            <div class="pi" style="background:${catBg(p.category)}">${catIco(p.category)}</div>
+            <div style="flex:1;min-width:0;">
+              <div class="pbr">${p.brand}</div>
+              <div class="pn">${p.productName}</div>
+              <div class="pm2">${p.modelNumber}</div>
+            </div>
+            <div style="color:var(--muted);font-size:1.1rem;margin-top:3px;">›</div>
+          </div>
+          <div class="pf"><div class="pd">Purchased ${fd(p.purchaseDate)}</div><div class="wc ${cc}">${ct}</div></div>
+        </div>`;
+      });
+    }
+    body.innerHTML = '<div style="padding-bottom:18px">' + h + '</div>';
+  } catch(e) {
+    body.innerHTML = `<div class="empty"><span>⚠️</span><p>Could not load. Check internet.</p></div>`;
+    console.error(e);
+  }
 }
 
 function openProd(pid) {
-  const p=_prods.find(x=>x.productId===pid);
-  if(!p)return; AP=p;
-  const ico=catIco(p.category),bg=catBg(p.category);
-  document.getElementById('di-ico-wrap').style.background=bg;
-  document.getElementById('di-ico').textContent=ico;
-  document.getElementById('di-brand').textContent=p.brand;
-  document.getElementById('di-name').textContent=p.productName;
-  document.getElementById('di-model').textContent=p.modelNumber;
-  document.getElementById('di-date').textContent=fd(p.purchaseDate);
-  document.getElementById('di-inv').textContent=p.invoiceNo||'—';
-  const wy=parseInt(p.warrantyYears)||1;
-  document.getElementById('di-war').textContent=fd(addYrs(p.purchaseDate,wy));
-  document.getElementById('di-sts').textContent=warOk(p.purchaseDate,wy)?'✅ Active':'⚠️ Expired';
-  document.getElementById('cf-ico').textContent=ico;
-  document.getElementById('cf-brand').textContent=p.brand;
-  document.getElementById('cf-name').textContent=p.productName;
-  const pt=_tix.filter(t=>t.productId===pid);
-  const dtix=document.getElementById('di-tix');
-  if(!pt.length){dtix.innerHTML=`<div class="empty"><span>🎫</span><p>No complaints raised for this product.</p></div>`;}
-  else{dtix.innerHTML=pt.slice().reverse().map(t=>`<div class="tc"><div class="tc-top"><div><div class="tc-id">${t.ticketId}</div><div class="tc-dt">${t.raisedOn}</div></div><span class="pill ${pc(t.status)}">${t.status}</span></div><div class="tc-prod">${t.issueType}</div><div class="tc-iss">${t.description||''}</div>${t.adminNote?`<div class="tc-note">📝 ${t.adminNote}</div>`:''}${t.companyTicket?`<div class="tc-ref">🏢 Company Ref: ${t.companyTicket}</div>`:''}</div>`).join('');}
-  go('s-detail');
+  const p = _prods.find(x => x.productId===pid);
+  if (!p) return;
+  AP = p;
+  const ico = catIco(p.category), bg = catBg(p.category);
+  document.getElementById('diw').style.background = bg;
+  document.getElementById('dii').textContent  = ico;
+  document.getElementById('dib').textContent  = p.brand;
+  document.getElementById('din').textContent  = p.productName;
+  document.getElementById('dim').textContent  = p.modelNumber;
+  document.getElementById('did').textContent  = fd(p.purchaseDate);
+  document.getElementById('diin').textContent = p.invoiceNo||'—';
+  const wy = parseInt(p.warrantyYears)||1;
+  document.getElementById('diw2').textContent = fd(addYrs(p.purchaseDate, wy));
+  document.getElementById('dis').textContent  = warOk(p.purchaseDate, wy) ? '✅ Active' : '⚠️ Expired';
+  document.getElementById('cfi').textContent  = ico;
+  document.getElementById('cfb').textContent  = p.brand;
+  document.getElementById('cfn').textContent  = p.productName;
+  const pt = _tix.filter(t => t.productId===pid);
+  const dtix = document.getElementById('dtix');
+  if (!pt.length) {
+    dtix.innerHTML = `<div class="empty"><span>🎫</span><p>No complaints raised yet.</p></div>`;
+  } else {
+    dtix.innerHTML = pt.slice().reverse().map(t => `
+      <div class="tc">
+        <div class="tct"><div><div class="tid">${t.ticketId}</div><div class="tdt">${t.raisedOn}</div></div><span class="pill ${pc(t.status)}">${t.status}</span></div>
+        <div class="tpr">${t.issueType}</div>
+        <div class="tis">${t.description||''}</div>
+        ${t.adminNote ? `<div class="tno">📝 ${t.adminNote}</div>` : ''}
+        ${t.companyTicket ? `<div class="tco">🏢 Company Ref: ${t.companyTicket}</div>` : ''}
+      </div>`).join('');
+  }
+  go('s-det');
 }
 
-async function submitComplaint() {
-  const iss=v('cf-type'),desc=v('cf-desc'),pref=document.getElementById('cf-time').value;
-  if(!iss){toast('Please select an issue type');return;}
-  if(!AP){toast('No product selected');return;}
-  const btn=document.getElementById('sub-btn');
-  btn.disabled=true;btn.textContent='Submitting…';
+// ── COMPLAINT ─────────────────────────────────────
+async function subComp() {
+  const iss = v('cft'), desc = v('cfd'), pref = document.getElementById('cfti').value;
+  if (!iss) { toast('Please select an issue type'); return; }
+  if (!AP)  { toast('No product selected'); return; }
+  const btn = document.getElementById('sb2');
+  btn.disabled=true; btn.textContent='Submitting…';
   try {
-    const r=await API({action:'raiseTicket',customerPhone:CU.phone,productId:AP.productId,productBrand:AP.brand,productName:AP.productName,modelNumber:AP.modelNumber,category:AP.category,issueType:iss,description:desc,preferredTime:pref});
-    if(!r.success){toast(r.message||'Failed');return;}
-    document.getElementById('s-tid').textContent=r.ticketId;
-    document.getElementById('s-tsub').textContent=`${AP.brand} ${AP.modelNumber}`;
-    go('s-success');
-  } catch(e){toast('Cannot connect. Try again.');}
-  finally{btn.disabled=false;btn.textContent='Submit Complaint →';}
+    await ensureBins();
+    const tickets = await jbGet(BINS.tickets);
+    const d = new Date();
+    const tid = 'ME-' + (AP.category||'XX').slice(0,2).toUpperCase() + '-' +
+      String(d.getDate()).padStart(2,'0') + String(d.getMonth()+1).padStart(2,'0') +
+      String(d.getFullYear()).slice(-2) + '-' + Math.floor(100+Math.random()*900);
+    const now = new Date().toLocaleDateString('en-IN', { day:'2-digit', month:'short', year:'numeric', hour:'2-digit', minute:'2-digit' });
+    tickets.push({
+      ticketId: tid, customerPhone: CU.phone, customerName: CU.name,
+      productId: AP.productId, productBrand: AP.brand, productName: AP.productName,
+      modelNumber: AP.modelNumber, issueType: iss, description: desc,
+      preferredTime: pref, status: 'Open', companyTicket: '', adminNote: '',
+      raisedOn: now, updatedOn: now
+    });
+    await jbSet(BINS.tickets, tickets);
+    document.getElementById('stid').textContent  = tid;
+    document.getElementById('stsub').textContent = `${AP.brand} ${AP.modelNumber}`;
+    go('s-ok');
+  } catch(e) { toast('Cannot submit. Try again.'); console.error(e); }
+  finally { btn.disabled=false; btn.textContent='Submit Complaint →'; }
 }
 
-async function loadTickets(body) {
+// ── TICKETS TAB ───────────────────────────────────
+async function loadTix(body) {
   try {
-    const r=await API({action:'getTickets',phone:CU.phone});
-    const tix=(r.tickets||[]).slice().reverse();
-    if(!tix.length){body.innerHTML=`<div style="padding-top:16px"><div class="empty"><span>🎫</span><p>No complaints raised yet.</p></div></div>`;return;}
-    body.innerHTML='<div style="padding-top:16px">'+tix.map(t=>`<div class="tc"><div class="tc-top"><div><div class="tc-id">${t.ticketId}</div><div class="tc-dt">${t.raisedOn}</div></div><span class="pill ${pc(t.status)}">${t.status}</span></div><div class="tc-prod">${t.productBrand} ${t.modelNumber}</div><div class="tc-iss">${t.issueType}</div>${t.description?`<div class="tc-iss" style="margin-top:3px">${t.description}</div>`:''}${t.adminNote?`<div class="tc-note">📝 ${t.adminNote}</div>`:''}${t.companyTicket?`<div class="tc-ref">🏢 Company Ref: ${t.companyTicket}</div>`:''}</div>`).join('')+'</div>';
-  } catch(e){body.innerHTML=`<div class="empty"><span>⚠️</span><p>Could not load tickets.</p></div>`;}
+    await ensureBins();
+    const tix = (await jbGet(BINS.tickets)).filter(t => t.customerPhone===CU.phone).reverse();
+    if (!tix.length) { body.innerHTML=`<div style="padding-top:14px"><div class="empty"><span>🎫</span><p>No complaints raised yet.</p></div></div>`; return; }
+    body.innerHTML = '<div style="padding-top:14px">'+tix.map(t=>`
+      <div class="tc">
+        <div class="tct"><div><div class="tid">${t.ticketId}</div><div class="tdt">${t.raisedOn}</div></div><span class="pill ${pc(t.status)}">${t.status}</span></div>
+        <div class="tpr">${t.productBrand} ${t.modelNumber}</div>
+        <div class="tis">${t.issueType}</div>
+        ${t.description?`<div class="tis" style="margin-top:2px">${t.description}</div>`:''}
+        ${t.adminNote?`<div class="tno">📝 ${t.adminNote}</div>`:''}
+        ${t.companyTicket?`<div class="tco">🏢 Company Ref: ${t.companyTicket}</div>`:''}
+      </div>`).join('')+'</div>';
+  } catch(e) { body.innerHTML=`<div class="empty"><span>⚠️</span><p>Could not load.</p></div>`; }
 }
 
-function renderProfile(body) {
-  const u=CU;
-  const row=(l,val)=>`<div style="display:flex;justify-content:space-between;align-items:center;padding:11px 0;border-bottom:1px solid var(--border);"><span style="font-size:.8rem;color:var(--muted);">${l}</span><span style="font-size:.83rem;font-weight:600;">${val}</span></div>`;
-  body.innerHTML=`<div style="padding-top:16px"><div style="display:flex;align-items:center;gap:14px;margin-bottom:24px;"><div style="width:54px;height:54px;border-radius:14px;background:var(--goldg);display:flex;align-items:center;justify-content:center;font-size:1.4rem;font-weight:800;color:#0F1C2E;flex-shrink:0;">${u.name[0].toUpperCase()}</div><div><div style="font-size:1.1rem;font-weight:800;">${u.name}</div><div style="font-size:.8rem;color:var(--muted);">${u.phone}</div></div></div>${row('Name',u.name)}${row('Phone',u.phone)}${row('Email',u.email||'—')}${row('Address',u.address)}${row('City',u.city)}${row('Pin Code',u.pinCode)}<div class="mt20"><button class="btn btn-red" onclick="doLogout()">Sign Out</button></div></div>`;
+// ── PROFILE TAB ───────────────────────────────────
+function renderProf(body) {
+  const u = CU;
+  const row = (l,val) => `<div style="display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid var(--border);"><span style="font-size:.78rem;color:var(--muted);">${l}</span><span style="font-size:.82rem;font-weight:600;">${val}</span></div>`;
+  body.innerHTML = `<div style="padding-top:14px">
+    <div style="display:flex;align-items:center;gap:13px;margin-bottom:22px;">
+      <div style="width:52px;height:52px;border-radius:13px;background:var(--goldg);display:flex;align-items:center;justify-content:center;font-size:1.35rem;font-weight:800;color:#0F1C2E;flex-shrink:0;">${u.name[0].toUpperCase()}</div>
+      <div><div style="font-size:1.05rem;font-weight:800;">${u.name}</div><div style="font-size:.78rem;color:var(--muted);">${u.phone}</div></div>
+    </div>
+    ${row('Name',u.name)}${row('Phone',u.phone)}${row('Email',u.email||'—')}${row('Address',u.address)}${row('City',u.city)}${row('Pin Code',u.pinCode)}
+    <div class="mt20"><button class="btn br" onclick="doLogout()">Sign Out</button></div>
+  </div>`;
 }
 
+// ── HELPERS ───────────────────────────────────────
 function v(id){return document.getElementById(id)?.value?.trim()||'';}
 function fd(d){if(!d)return'—';try{return new Date(d).toLocaleDateString('en-IN',{day:'2-digit',month:'short',year:'numeric'});}catch{return String(d);}}
 function addYrs(ds,y){try{const d=new Date(ds);d.setFullYear(d.getFullYear()+(y||1));return d.toISOString().slice(0,10);}catch{return '';}}
 function warOk(ds,y){try{return new Date(addYrs(ds,y||1))>new Date();}catch{return false;}}
 function catIco(c){return{'Air Conditioner':'❄️','Washing Machine':'🌀','Refrigerator':'🧊','Television':'📺','Microwave':'♨️','Water Purifier':'💧','Geyser':'🔥'}[c]||'📦';}
 function catBg(c){return{'Air Conditioner':'rgba(96,165,250,.15)','Washing Machine':'rgba(167,139,250,.15)','Refrigerator':'rgba(52,211,153,.15)','Television':'rgba(251,191,36,.15)','Geyser':'rgba(248,113,113,.15)'}[c]||'rgba(212,168,67,.15)';}
-function pc(s){return{'Open':'p-open','In Progress':'p-prog','Resolved':'p-res','Closed':'p-clo'}[s]||'p-open';}
-function toast(m){const t=document.getElementById('toast');t.textContent=m;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),3000);}
+function pc(s){return{'Open':'po','In Progress':'pp','Resolved':'pr','Closed':'pc2'}[s]||'po';}
+function toast(m){const t=document.getElementById('toast');t.textContent=m;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),3200);}
 
-window.addEventListener('load',()=>{
-  if(!SRV){go('s-setup');return;}
-  if(CU){renderHome();go('s-home');}
+// ── INIT ──────────────────────────────────────────
+window.addEventListener('load', async () => {
+  // Auto-setup bins on first load (no user action needed)
+  try { await ensureBins(); } catch(e) { console.log('Bin setup deferred:', e.message); }
+  if (CU) { renderHome(); go('s-home'); }
   else go('s-splash');
 });
 </script>
