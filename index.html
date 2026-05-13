@@ -184,6 +184,7 @@ body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--bg);color:var(-
     <button class="btn bg" onclick="go('s-reg')">Create Account →</button>
     <button class="btn bgh" onclick="go('s-login')">Already registered? Sign In</button>
   </div>
+  <p style="margin-top:20px;font-size:.7rem;color:var(--muted);cursor:pointer;" onclick="resetBins()">⚙ Reset app data</p>
 </div>
 
 <!-- REGISTER -->
@@ -314,7 +315,10 @@ async function jbGet(binId) {
     headers: { 'X-Access-Key': JSONBIN_ACCESS }
   });
   const j = await r.json();
-  return j.record;
+  if (j.record !== undefined) return j.record;
+  if (Array.isArray(j)) return j;
+  console.error('jbGet unexpected response:', JSON.stringify(j));
+  return [];
 }
 
 async function jbSet(binId, data) {
@@ -337,17 +341,24 @@ async function jbCreate(name, data) {
     body: JSON.stringify(data)
   });
   const j = await r.json();
+  if (!j.metadata || !j.metadata.id) {
+    console.error('JSONBin create error:', JSON.stringify(j));
+    throw new Error('Could not create database bin: ' + (j.message || JSON.stringify(j)));
+  }
   return j.metadata.id;
 }
 
 async function ensureBins() {
   if (BINS.customers && BINS.products && BINS.tickets && BINS.promos) return;
-  toast('Setting up database… (first time only)');
-  if (!BINS.customers) BINS.customers = await jbCreate('me_customers', []);
-  if (!BINS.products)  BINS.products  = await jbCreate('me_products',  []);
-  if (!BINS.tickets)   BINS.tickets   = await jbCreate('me_tickets',   []);
-  if (!BINS.promos)    BINS.promos    = await jbCreate('me_promos',    []);
-  localStorage.setItem('me_bins', JSON.stringify(BINS));
+  try {
+    if (!BINS.customers) { BINS.customers = await jbCreate('me_customers', []); localStorage.setItem('me_bins', JSON.stringify(BINS)); }
+    if (!BINS.products)  { BINS.products  = await jbCreate('me_products',  []); localStorage.setItem('me_bins', JSON.stringify(BINS)); }
+    if (!BINS.tickets)   { BINS.tickets   = await jbCreate('me_tickets',   []); localStorage.setItem('me_bins', JSON.stringify(BINS)); }
+    if (!BINS.promos)    { BINS.promos    = await jbCreate('me_promos',    []); localStorage.setItem('me_bins', JSON.stringify(BINS)); }
+  } catch(e) {
+    console.error('ensureBins error:', e);
+    throw e;
+  }
 }
 
 // ── URL SETUP (kept for backward compat, not needed for JSONBin) ─
@@ -588,6 +599,17 @@ function catIco(c){return{'Air Conditioner':'❄️','Washing Machine':'🌀','R
 function catBg(c){return{'Air Conditioner':'rgba(96,165,250,.15)','Washing Machine':'rgba(167,139,250,.15)','Refrigerator':'rgba(52,211,153,.15)','Television':'rgba(251,191,36,.15)','Geyser':'rgba(248,113,113,.15)'}[c]||'rgba(212,168,67,.15)';}
 function pc(s){return{'Open':'po','In Progress':'pp','Resolved':'pr','Closed':'pc2'}[s]||'po';}
 function toast(m){const t=document.getElementById('toast');t.textContent=m;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),3200);}
+
+// ── RESET ────────────────────────────────────────
+function resetBins() {
+  if (!confirm('This will reset the app connection. Your data on the server is safe. Continue?')) return;
+  localStorage.removeItem('me_bins');
+  localStorage.removeItem('me_sess2');
+  BINS = {};
+  CU = null;
+  toast('Reset done. Reconnecting…');
+  setTimeout(() => window.location.reload(), 1500);
+}
 
 // ── INIT ──────────────────────────────────────────
 window.addEventListener('load', async () => {
