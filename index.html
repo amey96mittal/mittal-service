@@ -17,21 +17,11 @@ body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--bg);color:var(-
 .screen.cx{justify-content:center;align-items:center;padding:28px 24px;text-align:center;}
 .sb{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;}
 .sb::-webkit-scrollbar{display:none;}
-
-/* SETUP */
-.si{font-size:3rem;margin-bottom:18px;}
-.st{font-size:1.35rem;font-weight:800;margin-bottom:8px;}
-.sd{font-size:.84rem;color:var(--muted);line-height:1.7;margin-bottom:26px;}
-.ui{width:100%;padding:13px 14px;background:var(--card);border:1.5px solid var(--borderg);border-radius:var(--r2);color:var(--white);font-family:'JetBrains Mono',monospace;font-size:.76rem;outline:none;margin-bottom:12px;}
-
-/* SPLASH */
 .orb{width:96px;height:96px;border-radius:24px;background:var(--goldg);display:flex;align-items:center;justify-content:center;font-size:2.8rem;margin-bottom:26px;box-shadow:0 0 0 14px rgba(212,168,67,.08),0 18px 50px rgba(212,168,67,.22);animation:bob 3s ease-in-out infinite;}
 @keyframes bob{0%,100%{transform:translateY(0);}50%{transform:translateY(-7px);}}
 .spl-t{font-size:1.9rem;font-weight:800;letter-spacing:-.03em;margin-bottom:5px;}
 .spl-s{color:var(--muted);font-size:.88rem;margin-bottom:42px;}
 .spl-b{width:100%;max-width:290px;display:flex;flex-direction:column;gap:11px;}
-
-/* FIELDS */
 .field{margin-bottom:15px;}
 .field label{display:block;font-size:.69rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:5px;}
 .field input,.field select,.field textarea{width:100%;padding:12px 15px;background:var(--card);border:1.5px solid var(--border);border-radius:var(--r2);color:var(--white);font-family:'Plus Jakarta Sans',sans-serif;font-size:.9rem;outline:none;transition:border-color .2s,box-shadow .2s;-webkit-appearance:none;}
@@ -40,8 +30,6 @@ body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--bg);color:var(-
 .field select option{background:var(--card2);}
 .field textarea{resize:none;min-height:84px;}
 .fr{display:grid;grid-template-columns:1fr 1fr;gap:11px;}
-
-/* BUTTONS */
 .btn{display:flex;align-items:center;justify-content:center;gap:7px;padding:13px 22px;border:none;border-radius:var(--r2);font-family:'Plus Jakarta Sans',sans-serif;font-size:.91rem;font-weight:700;cursor:pointer;transition:all .17s;width:100%;}
 .bg{background:var(--goldg);color:#0F1C2E;}
 .bg:hover{opacity:.91;transform:translateY(-1px);}
@@ -49,41 +37,29 @@ body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--bg);color:var(-
 .bgh{background:rgba(240,237,230,.06);color:var(--muted);border:1.5px solid var(--border);}
 .bgh:hover{border-color:var(--gold);color:var(--gold);}
 .br{background:var(--red-bg);color:var(--red);border:1px solid rgba(248,113,113,.2);}
-
-/* HBAR */
 .hb{display:flex;align-items:center;gap:11px;padding:calc(var(--st) + 13px) 18px 13px;border-bottom:1px solid var(--border);flex-shrink:0;}
 .bk{width:34px;height:34px;border-radius:9px;background:var(--card);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:1rem;cursor:pointer;flex-shrink:0;}
 .ht{font-weight:700;font-size:.97rem;flex:1;}
-
-/* HOME HEAD */
 .hh{padding:calc(var(--st) + 16px) 18px 0;flex-shrink:0;}
 .hhr{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:18px;}
 .gl{font-size:.74rem;color:var(--muted);margin-bottom:2px;}
 .gn{font-size:1.45rem;font-weight:800;letter-spacing:-.02em;}
 .av{width:42px;height:42px;border-radius:11px;background:var(--goldg);display:flex;align-items:center;justify-content:center;font-size:1.05rem;font-weight:800;color:#0F1C2E;cursor:pointer;flex-shrink:0;}
-
-/* NAV */
 .bn{display:flex;padding:7px 0 calc(var(--sb) + 7px);background:var(--card);border-top:1px solid var(--border);flex-shrink:0;position:relative;}
 .ni{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;background:none;border:none;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;color:var(--muted);transition:color .14s;padding:4px 0;}
 .ni.on{color:var(--gold);}
 .ni .ic{font-size:1.25rem;line-height:1;}
 .ni .lb{font-size:.59rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;}
 .od{width:6px;height:6px;border-radius:50%;background:var(--red);position:absolute;top:7px;right:calc(50% - 26px);display:none;}
-
-/* STATS */
 .sts{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin:14px 0 18px;}
 .stb{background:var(--card);border:1px solid var(--border);border-radius:var(--r2);padding:13px 9px;text-align:center;}
 .sv{font-size:1.6rem;font-weight:800;color:var(--gold);letter-spacing:-.02em;}
 .sl{font-size:.65rem;color:var(--muted);margin-top:2px;}
-
-/* PROMO */
 .promo{border-radius:var(--r);padding:15px;margin-bottom:18px;background:linear-gradient(135deg,#152219,#0d1a10);border:1px solid rgba(52,211,153,.18);position:relative;overflow:hidden;}
 .promo::after{content:'🎉';position:absolute;right:12px;top:50%;transform:translateY(-50%);font-size:2.4rem;opacity:.28;}
 .pt{font-size:.65rem;font-weight:700;color:var(--green);text-transform:uppercase;letter-spacing:.1em;margin-bottom:3px;}
 .pm{font-size:.94rem;font-weight:700;margin-bottom:2px;}
 .ps{font-size:.74rem;color:rgba(240,237,230,.42);}
-
-/* PRODUCT CARD */
 .pc{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:15px;margin-bottom:11px;cursor:pointer;transition:border-color .2s,transform .18s;}
 .pc:active{transform:scale(.98);}
 .pct{display:flex;gap:13px;align-items:flex-start;margin-bottom:11px;}
@@ -97,8 +73,6 @@ body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--bg);color:var(-
 .wok{background:var(--green-bg);color:var(--green);}
 .wex{background:var(--red-bg);color:var(--red);}
 .wco{background:var(--amber-bg);color:var(--amber);}
-
-/* TICKET CARD */
 .tc{background:var(--card);border:1px solid var(--border);border-radius:var(--r2);padding:13px 15px;margin-bottom:9px;}
 .tct{display:flex;align-items:flex-start;justify-content:space-between;gap:7px;margin-bottom:7px;}
 .tid{font-family:'JetBrains Mono',monospace;font-size:.68rem;color:var(--gold);font-weight:600;}
@@ -107,16 +81,12 @@ body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--bg);color:var(-
 .tis{font-size:.76rem;color:var(--muted);margin-top:2px;}
 .tno{font-size:.71rem;color:var(--muted);font-style:italic;margin-top:7px;padding-top:7px;border-top:1px solid var(--border);}
 .tco{font-size:.71rem;color:var(--blue);margin-top:3px;}
-
-/* PILLS */
 .pill{display:inline-flex;align-items:center;gap:4px;padding:2px 8px;border-radius:20px;font-size:.61rem;font-weight:800;text-transform:uppercase;letter-spacing:.06em;flex-shrink:0;}
 .pill::before{content:'';width:5px;height:5px;border-radius:50%;background:currentColor;}
 .po{background:var(--amber-bg);color:var(--amber);}
 .pp{background:var(--blue-bg);color:var(--blue);}
-.pr{background:var(--green-bg);color:var(--green);}
+.pr2{background:var(--green-bg);color:var(--green);}
 .pc2{background:rgba(123,144,168,.11);color:var(--muted);}
-
-/* DETAIL */
 .dh{padding:calc(var(--st) + 13px) 18px 0;flex-shrink:0;}
 .dic{width:66px;height:66px;border-radius:17px;display:flex;align-items:center;justify-content:center;font-size:1.9rem;margin:14px 0 11px;}
 .dbr{font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--gold);margin-bottom:2px;}
@@ -129,7 +99,7 @@ body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--bg);color:var(-
 .igl{font-size:.63rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:3px;}
 .igv{font-size:.85rem;font-weight:600;}
 .ag{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-bottom:18px;}
-.at{background:var(--card);border:1px solid var(--border);border-radius:var(--r2);padding:14px 9px;display:flex;flex-direction:column;align-items:center;gap:5px;cursor:pointer;transition:all .17s;font-family:'Plus Jakarta Sans',sans-serif;font-size:.78rem;font-weight:700;text-decoration:none;}
+.at{background:var(--card);border:1px solid var(--border);border-radius:var(--r2);padding:14px 9px;display:flex;flex-direction:column;align-items:center;gap:5px;cursor:pointer;transition:all .17s;font-family:'Plus Jakarta Sans',sans-serif;font-size:.78rem;font-weight:700;text-decoration:none;color:inherit;}
 .at:active{transform:scale(.97);}
 .ati{font-size:1.35rem;}
 .atc{color:var(--amber);border-color:rgba(251,191,36,.2);}
@@ -137,16 +107,12 @@ body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--bg);color:var(-
 .sr{display:flex;align-items:center;justify-content:space-between;margin-bottom:11px;}
 .srt{font-size:.94rem;font-weight:700;}
 .pchip{display:flex;align-items:center;gap:9px;padding:9px 13px;background:var(--card);border-radius:var(--r2);margin-bottom:18px;}
-
-/* SUCCESS */
 .ring{width:86px;height:86px;border-radius:50%;background:var(--green-bg);border:2px solid var(--green);display:flex;align-items:center;justify-content:center;font-size:2.5rem;margin-bottom:22px;animation:pop .4s cubic-bezier(.34,1.56,.64,1);}
 @keyframes pop{from{transform:scale(.4);opacity:0;}to{transform:scale(1);opacity:1;}}
 .tbox{background:var(--card);border:1px solid var(--borderg);border-radius:var(--r);padding:20px;width:100%;margin:18px 0;text-align:center;}
 .tbl{font-size:.66rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:7px;}
 .tbi{font-family:'JetBrains Mono',monospace;font-size:1.35rem;font-weight:700;color:var(--gold);letter-spacing:.05em;}
 .tbs{font-size:.74rem;color:var(--muted);margin-top:5px;}
-
-/* LOADER & EMPTY */
 .ldr{display:flex;align-items:center;justify-content:center;padding:44px;flex-direction:column;gap:12px;}
 .spin{width:28px;height:28px;border:3px solid rgba(212,168,67,.2);border-top-color:var(--gold);border-radius:50%;animation:spin .7s linear infinite;}
 @keyframes spin{to{transform:rotate(360deg);}}
@@ -154,29 +120,16 @@ body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--bg);color:var(-
 .empty{text-align:center;padding:34px 18px;color:var(--muted);}
 .empty span{font-size:2.2rem;display:block;margin-bottom:9px;}
 .empty p{font-size:.84rem;line-height:1.6;}
-
-/* TOAST */
 #toast{position:fixed;bottom:calc(var(--sb) + 74px);left:50%;transform:translateX(-50%) translateY(14px);background:var(--card2);border:1px solid var(--borderg);color:var(--white);padding:9px 20px;border-radius:28px;font-size:.8rem;font-weight:600;white-space:nowrap;opacity:0;transition:all .28s;z-index:9999;pointer-events:none;box-shadow:0 6px 28px rgba(0,0,0,.3);}
 #toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
-
 .pad{padding:0 18px;}.padv{padding:14px 18px;}.pb80{padding-bottom:80px;}
 .mt12{margin-top:12px;}.mt16{margin-top:16px;}.mt20{margin-top:20px;}
 </style>
 </head>
 <body>
 
-<!-- SETUP -->
-<div class="screen cx active" id="s-setup">
-  <div class="si">⚙️</div>
-  <div class="st">One-Time Setup</div>
-  <div class="sd">Paste the Server URL from Mittal Electronics. You only do this once — never again.</div>
-  <input class="ui" type="url" id="su" placeholder="https://script.google.com/macros/s/…/exec">
-  <button class="btn bg" onclick="saveUrl()">Connect & Start →</button>
-  <p style="margin-top:12px;font-size:.72rem;color:var(--muted);">One-time only.</p>
-</div>
-
 <!-- SPLASH -->
-<div class="screen cx" id="s-splash">
+<div class="screen cx active" id="s-splash">
   <div class="orb">🏪</div>
   <div class="spl-t">Mittal Electronics</div>
   <div class="spl-s">Your products. Your warranty. One app.</div>
@@ -184,7 +137,6 @@ body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--bg);color:var(-
     <button class="btn bg" onclick="go('s-reg')">Create Account →</button>
     <button class="btn bgh" onclick="go('s-login')">Already registered? Sign In</button>
   </div>
-  <p style="margin-top:20px;font-size:.7rem;color:var(--muted);cursor:pointer;" onclick="resetBins()">⚙ Reset app data</p>
 </div>
 
 <!-- REGISTER -->
@@ -294,111 +246,54 @@ body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--bg);color:var(-
 <div id="toast"></div>
 
 <script>
-// ══════════════════════════════════════════════════
-// CONFIG — Uses Google Apps Script via GET (no CORS)
-// ══════════════════════════════════════════════════
-const JSONBIN_MASTER = '$2a$10$KwMQiw59h6v.iYZkBxF6ZOl0UKkH.pIaAA8vLG684aSqlTMtChFp6';
-const JSONBIN_ACCESS = '$2a$10$dyKO4meM/TjdPQS6J8Iob.oLQ/D26sqj4qS8FSIQ498qwLQjGiGQu';
-const JSONBIN_BASE   = 'https://api.jsonbin.io/v3/b';
+// ══════════════════════════════════════════════
+// SUPABASE CONFIG
+// ══════════════════════════════════════════════
+const SB_URL = 'https://cesckokfutvdanqxptbu.supabase.co';
+const SB_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNlc2Nrb2tmdXR2ZGFucXhwdGJ1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzg2NTM2MzYsImV4cCI6MjA5NDIyOTYzNn0.xx70d9xoaM-vRXUwE8fiBMJJQHK-LTtsdHB59l-VGq0';
 
-let SRV = localStorage.getItem('me_srv2') || '';
-let CU  = JSON.parse(localStorage.getItem('me_sess2') || 'null');
-let AP  = null, TAB = 'products';
+const H = { 'Content-Type':'application/json', 'apikey': SB_KEY, 'Authorization': 'Bearer ' + SB_KEY };
+
+async function sb(method, table, params='', body=null) {
+  const opts = { method, headers: H };
+  if (body) opts.body = JSON.stringify(body);
+  const r = await fetch(`${SB_URL}/rest/v1/${table}${params}`, opts);
+  if (!r.ok) { const e = await r.json(); throw new Error(e.message||r.status); }
+  if (method === 'DELETE' || r.status === 204) return true;
+  return r.json();
+}
+
+// ── STATE ──────────────────────────────────────
+let CU = JSON.parse(localStorage.getItem('me_user') || 'null');
+let AP = null, TAB = 'products';
 let _prods = [], _tix = [];
 
-// BIN IDs stored after first creation
-let BINS = JSON.parse(localStorage.getItem('me_bins') || '{}');
-
-// ── JSONBIN API ──────────────────────────────────
-async function jbGet(binId) {
-  const r = await fetch(`${JSONBIN_BASE}/${binId}/latest`, {
-    headers: { 'X-Access-Key': JSONBIN_ACCESS }
-  });
-  const j = await r.json();
-  if (j.record !== undefined) return j.record;
-  if (Array.isArray(j)) return j;
-  console.error('jbGet unexpected response:', JSON.stringify(j));
-  return [];
-}
-
-async function jbSet(binId, data) {
-  await fetch(`${JSONBIN_BASE}/${binId}`, {
-    method: 'PUT',
-    headers: { 'Content-Type': 'application/json', 'X-Access-Key': JSONBIN_ACCESS },
-    body: JSON.stringify(data)
-  });
-}
-
-async function jbCreate(name, data) {
-  const r = await fetch(JSONBIN_BASE, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'X-Master-Key': JSONBIN_MASTER,
-      'X-Bin-Name': name,
-      'X-Bin-Private': 'false'
-    },
-    body: JSON.stringify(data)
-  });
-  const j = await r.json();
-  if (!j.metadata || !j.metadata.id) {
-    console.error('JSONBin create error:', JSON.stringify(j));
-    throw new Error('Could not create database bin: ' + (j.message || JSON.stringify(j)));
-  }
-  return j.metadata.id;
-}
-
-async function ensureBins() {
-  if (BINS.customers && BINS.products && BINS.tickets && BINS.promos) return;
-  try {
-    if (!BINS.customers) { BINS.customers = await jbCreate('me_customers', []); localStorage.setItem('me_bins', JSON.stringify(BINS)); }
-    if (!BINS.products)  { BINS.products  = await jbCreate('me_products',  []); localStorage.setItem('me_bins', JSON.stringify(BINS)); }
-    if (!BINS.tickets)   { BINS.tickets   = await jbCreate('me_tickets',   []); localStorage.setItem('me_bins', JSON.stringify(BINS)); }
-    if (!BINS.promos)    { BINS.promos    = await jbCreate('me_promos',    []); localStorage.setItem('me_bins', JSON.stringify(BINS)); }
-  } catch(e) {
-    console.error('ensureBins error:', e);
-    throw e;
-  }
-}
-
-// ── URL SETUP (kept for backward compat, not needed for JSONBin) ─
-function saveUrl() {
-  const u = document.getElementById('su').value.trim();
-  if (!u) { toast('Please paste the Server URL'); return; }
-  localStorage.setItem('me_srv2', u);
-  SRV = u;
-  CU ? (renderHome(), go('s-home')) : go('s-splash');
-}
-
-// ── NAVIGATION ───────────────────────────────────
+// ── NAV ────────────────────────────────────────
 function go(id) {
   document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
   document.getElementById(id).classList.add('active');
 }
 function goHome() { go('s-home'); st('products'); }
 
-// ── AUTH ─────────────────────────────────────────
+// ── AUTH ───────────────────────────────────────
 async function doReg() {
   const btn = document.getElementById('rb');
-  const name = v('rn'), phone = v('rp'), email = v('re'),
-        address = v('ra'), city = v('rc'), pinCode = v('rz');
-  if (!name||!phone||!address||!city||!pinCode) { toast('Please fill all required fields'); return; }
+  const name=v('rn'), phone=v('rp'), email=v('re'), address=v('ra'), city=v('rc'), pin_code=v('rz');
+  if (!name||!phone||!address||!city||!pin_code) { toast('Please fill all required fields'); return; }
   if (phone.length!==10) { toast('Enter a valid 10-digit mobile number'); return; }
-  if (pinCode.length!==6) { toast('Enter a valid 6-digit pin code'); return; }
+  if (pin_code.length!==6) { toast('Enter a valid 6-digit pin code'); return; }
   btn.disabled=true; btn.textContent='Creating account…';
   try {
-    await ensureBins();
-    const customers = await jbGet(BINS.customers);
-    if (customers.find(c => c.phone === phone)) { toast('Mobile already registered. Please sign in.'); return; }
-    const now = new Date().toLocaleDateString('en-IN', { day:'2-digit', month:'short', year:'numeric' });
-    const cust = { phone, name, email, address, city, pinCode, registeredOn: now };
-    customers.push(cust);
-    await jbSet(BINS.customers, customers);
-    CU = cust;
-    localStorage.setItem('me_sess2', JSON.stringify(CU));
+    // Check if already registered
+    const existing = await sb('GET','customers',`?phone=eq.${phone}&select=phone`);
+    if (existing.length) { toast('Mobile already registered. Please sign in.'); return; }
+    const now = new Date().toLocaleDateString('en-IN',{day:'2-digit',month:'short',year:'numeric'});
+    const rows = await sb('POST','customers','?select=*',{phone,name,email,address,city,pin_code,registered_on:now});
+    CU = rows[0];
+    localStorage.setItem('me_user', JSON.stringify(CU));
     renderHome(); go('s-home');
-    toast('Welcome, ' + name.split(' ')[0] + '! 🎉');
-  } catch(e) { console.error(e); toast('Error: ' + e.message); }
+    toast('Welcome, '+name.split(' ')[0]+'! 🎉');
+  } catch(e) { toast('Error: '+e.message); }
   finally { btn.disabled=false; btn.textContent='Create My Account →'; }
 }
 
@@ -406,31 +301,29 @@ async function doLogin() {
   const phone = v('lp');
   if (!phone||phone.length!==10) { toast('Enter a valid 10-digit number'); return; }
   try {
-    await ensureBins();
-    const customers = await jbGet(BINS.customers);
-    const cust = customers.find(c => c.phone === phone);
-    if (!cust) { toast('No account found. Please register first.'); return; }
-    CU = cust;
-    localStorage.setItem('me_sess2', JSON.stringify(CU));
+    const rows = await sb('GET','customers',`?phone=eq.${phone}&select=*`);
+    if (!rows.length) { toast('No account found. Please register first.'); return; }
+    CU = rows[0];
+    localStorage.setItem('me_user', JSON.stringify(CU));
     renderHome(); go('s-home');
-  } catch(e) { toast('Cannot connect. Check internet.'); }
+  } catch(e) { toast('Error: '+e.message); }
 }
 
 function doLogout() {
-  localStorage.removeItem('me_sess2');
+  localStorage.removeItem('me_user');
   CU=null; AP=null; go('s-splash');
 }
 
-// ── HOME ─────────────────────────────────────────
+// ── HOME ───────────────────────────────────────
 function renderHome() {
-  document.getElementById('hn').textContent  = CU.name.split(' ')[0];
+  document.getElementById('hn').textContent = CU.name.split(' ')[0];
   document.getElementById('hav').textContent = CU.name[0].toUpperCase();
   st(TAB);
 }
 
 function st(tab) {
   TAB = tab;
-  ['products','tickets','profile'].forEach(t => document.getElementById('nb-'+t)?.classList.toggle('on', t===tab));
+  ['products','tickets','profile'].forEach(t => document.getElementById('nb-'+t)?.classList.toggle('on',t===tab));
   const body = document.getElementById('tb');
   body.innerHTML = '<div class="ldr"><div class="spin"></div><p>Loading…</p></div>';
   if (tab==='products') loadProds(body);
@@ -438,184 +331,152 @@ function st(tab) {
   else renderProf(body);
 }
 
-// ── PRODUCTS ─────────────────────────────────────
+// ── PRODUCTS ───────────────────────────────────
 async function loadProds(body) {
   try {
-    await ensureBins();
     const [prods, tix, promos] = await Promise.all([
-      jbGet(BINS.products),
-      jbGet(BINS.tickets),
-      jbGet(BINS.promos)
+      sb('GET','products',`?customer_phone=eq.${CU.phone}&select=*&order=id.asc`),
+      sb('GET','tickets',`?customer_phone=eq.${CU.phone}&select=*&order=id.asc`),
+      sb('GET','promos',`?active=eq.true&select=*&order=id.desc&limit=1`)
     ]);
-    _prods = prods.filter(p => p.customerPhone === CU.phone);
-    _tix   = tix.filter(t => t.customerPhone === CU.phone);
-    const openN = _tix.filter(t => t.status==='Open').length;
-    const od = document.getElementById('od');
-    od.style.display = openN ? 'block' : 'none';
+    _prods=prods; _tix=tix;
+    const openN=tix.filter(t=>t.status==='Open').length;
+    document.getElementById('od').style.display=openN?'block':'none';
 
-    let h = '';
-    h += `<div class="sts"><div class="stb"><div class="sv">${_prods.length}</div><div class="sl">Products</div></div><div class="stb"><div class="sv">${_tix.length}</div><div class="sl">Tickets</div></div><div class="stb"><div class="sv">${openN}</div><div class="sl">Open</div></div></div>`;
+    let h='';
+    h+=`<div class="sts"><div class="stb"><div class="sv">${prods.length}</div><div class="sl">Products</div></div><div class="stb"><div class="sv">${tix.length}</div><div class="sl">Tickets</div></div><div class="stb"><div class="sv">${openN}</div><div class="sl">Open</div></div></div>`;
 
-    const activePromos = promos.filter(p => p.active);
-    if (activePromos.length) {
-      const p = activePromos[activePromos.length-1];
-      h += `<div class="promo"><div class="pt">🎊 ${p.tag||'Offer'}</div><div class="pm">${p.title}</div><div class="ps">${p.subText||''}</div></div>`;
-    }
+    if(promos.length){const p=promos[0];h+=`<div class="promo"><div class="pt">🎊 ${p.tag||'Offer'}</div><div class="pm">${p.title}</div><div class="ps">${p.sub_text||''}</div></div>`;}
 
-    h += `<div class="sr"><div class="srt">My Products</div></div>`;
-    if (!_prods.length) {
-      h += `<div class="empty"><span>📦</span><p>No products yet.<br>Your products appear here after purchase from Mittal Electronics.</p></div>`;
+    h+=`<div class="sr"><div class="srt">My Products</div></div>`;
+    if(!prods.length){
+      h+=`<div class="empty"><span>📦</span><p>No products yet.<br>Your products appear here after purchase from Mittal Electronics.</p></div>`;
     } else {
-      _prods.forEach(p => {
-        const pt   = _tix.filter(t => t.productId===p.productId);
-        const hasO = pt.some(t => t.status==='Open'||t.status==='In Progress');
-        const wOk  = warOk(p.purchaseDate, p.warrantyYears);
-        const cc   = hasO?'wco':wOk?'wok':'wex';
-        const ct   = hasO?'Complaint Open':wOk?'Under Warranty':'Warranty Expired';
-        h += `<div class="pc" onclick="openProd('${p.productId}')">
+      prods.forEach(p=>{
+        const pt=tix.filter(t=>t.product_id===p.product_id);
+        const hasO=pt.some(t=>t.status==='Open'||t.status==='In Progress');
+        const wOk=warOk(p.purchase_date,p.warranty_years);
+        const cc=hasO?'wco':wOk?'wok':'wex';
+        const ct=hasO?'Complaint Open':wOk?'Under Warranty':'Warranty Expired';
+        h+=`<div class="pc" onclick="openProd('${p.product_id}')">
           <div class="pct">
             <div class="pi" style="background:${catBg(p.category)}">${catIco(p.category)}</div>
             <div style="flex:1;min-width:0;">
               <div class="pbr">${p.brand}</div>
-              <div class="pn">${p.productName}</div>
-              <div class="pm2">${p.modelNumber}</div>
+              <div class="pn">${p.product_name}</div>
+              <div class="pm2">${p.model_number}</div>
             </div>
             <div style="color:var(--muted);font-size:1.1rem;margin-top:3px;">›</div>
           </div>
-          <div class="pf"><div class="pd">Purchased ${fd(p.purchaseDate)}</div><div class="wc ${cc}">${ct}</div></div>
+          <div class="pf"><div class="pd">Purchased ${fd(p.purchase_date)}</div><div class="wc ${cc}">${ct}</div></div>
         </div>`;
       });
     }
-    body.innerHTML = '<div style="padding-bottom:18px">' + h + '</div>';
-  } catch(e) {
-    body.innerHTML = `<div class="empty"><span>⚠️</span><p>Could not load. Check internet.</p></div>`;
-    console.error(e);
-  }
+    body.innerHTML='<div style="padding-bottom:18px">'+h+'</div>';
+  } catch(e){body.innerHTML=`<div class="empty"><span>⚠️</span><p>Error: ${e.message}</p></div>`;}
 }
 
 function openProd(pid) {
-  const p = _prods.find(x => x.productId===pid);
-  if (!p) return;
-  AP = p;
-  const ico = catIco(p.category), bg = catBg(p.category);
-  document.getElementById('diw').style.background = bg;
-  document.getElementById('dii').textContent  = ico;
-  document.getElementById('dib').textContent  = p.brand;
-  document.getElementById('din').textContent  = p.productName;
-  document.getElementById('dim').textContent  = p.modelNumber;
-  document.getElementById('did').textContent  = fd(p.purchaseDate);
-  document.getElementById('diin').textContent = p.invoiceNo||'—';
-  const wy = parseInt(p.warrantyYears)||1;
-  document.getElementById('diw2').textContent = fd(addYrs(p.purchaseDate, wy));
-  document.getElementById('dis').textContent  = warOk(p.purchaseDate, wy) ? '✅ Active' : '⚠️ Expired';
-  document.getElementById('cfi').textContent  = ico;
-  document.getElementById('cfb').textContent  = p.brand;
-  document.getElementById('cfn').textContent  = p.productName;
-  const pt = _tix.filter(t => t.productId===pid);
-  const dtix = document.getElementById('dtix');
-  if (!pt.length) {
-    dtix.innerHTML = `<div class="empty"><span>🎫</span><p>No complaints raised yet.</p></div>`;
-  } else {
-    dtix.innerHTML = pt.slice().reverse().map(t => `
-      <div class="tc">
-        <div class="tct"><div><div class="tid">${t.ticketId}</div><div class="tdt">${t.raisedOn}</div></div><span class="pill ${pc(t.status)}">${t.status}</span></div>
-        <div class="tpr">${t.issueType}</div>
-        <div class="tis">${t.description||''}</div>
-        ${t.adminNote ? `<div class="tno">📝 ${t.adminNote}</div>` : ''}
-        ${t.companyTicket ? `<div class="tco">🏢 Company Ref: ${t.companyTicket}</div>` : ''}
-      </div>`).join('');
-  }
+  const p=_prods.find(x=>x.product_id===pid);
+  if(!p)return; AP=p;
+  const ico=catIco(p.category), bg=catBg(p.category);
+  document.getElementById('diw').style.background=bg;
+  document.getElementById('dii').textContent=ico;
+  document.getElementById('dib').textContent=p.brand;
+  document.getElementById('din').textContent=p.product_name;
+  document.getElementById('dim').textContent=p.model_number;
+  document.getElementById('did').textContent=fd(p.purchase_date);
+  document.getElementById('diin').textContent=p.invoice_no||'—';
+  const wy=parseInt(p.warranty_years)||1;
+  document.getElementById('diw2').textContent=fd(addYrs(p.purchase_date,wy));
+  document.getElementById('dis').textContent=warOk(p.purchase_date,wy)?'✅ Active':'⚠️ Expired';
+  document.getElementById('cfi').textContent=ico;
+  document.getElementById('cfb').textContent=p.brand;
+  document.getElementById('cfn').textContent=p.product_name;
+  const pt=_tix.filter(t=>t.product_id===pid);
+  const dtix=document.getElementById('dtix');
+  if(!pt.length){dtix.innerHTML=`<div class="empty"><span>🎫</span><p>No complaints raised yet.</p></div>`;}
+  else{dtix.innerHTML=pt.slice().reverse().map(t=>`
+    <div class="tc">
+      <div class="tct"><div><div class="tid">${t.ticket_id}</div><div class="tdt">${t.raised_on}</div></div><span class="pill ${pc(t.status)}">${t.status}</span></div>
+      <div class="tpr">${t.issue_type}</div>
+      <div class="tis">${t.description||''}</div>
+      ${t.admin_note?`<div class="tno">📝 ${t.admin_note}</div>`:''}
+      ${t.company_ticket?`<div class="tco">🏢 Company Ref: ${t.company_ticket}</div>`:''}
+    </div>`).join('');}
   go('s-det');
 }
 
-// ── COMPLAINT ─────────────────────────────────────
+// ── COMPLAINT ──────────────────────────────────
 async function subComp() {
-  const iss = v('cft'), desc = v('cfd'), pref = document.getElementById('cfti').value;
-  if (!iss) { toast('Please select an issue type'); return; }
-  if (!AP)  { toast('No product selected'); return; }
-  const btn = document.getElementById('sb2');
+  const iss=v('cft'), desc=v('cfd'), pref=document.getElementById('cfti').value;
+  if(!iss){toast('Please select an issue type');return;}
+  if(!AP){toast('No product selected');return;}
+  const btn=document.getElementById('sb2');
   btn.disabled=true; btn.textContent='Submitting…';
   try {
-    await ensureBins();
-    const tickets = await jbGet(BINS.tickets);
-    const d = new Date();
-    const tid = 'ME-' + (AP.category||'XX').slice(0,2).toUpperCase() + '-' +
-      String(d.getDate()).padStart(2,'0') + String(d.getMonth()+1).padStart(2,'0') +
-      String(d.getFullYear()).slice(-2) + '-' + Math.floor(100+Math.random()*900);
-    const now = new Date().toLocaleDateString('en-IN', { day:'2-digit', month:'short', year:'numeric', hour:'2-digit', minute:'2-digit' });
-    tickets.push({
-      ticketId: tid, customerPhone: CU.phone, customerName: CU.name,
-      productId: AP.productId, productBrand: AP.brand, productName: AP.productName,
-      modelNumber: AP.modelNumber, issueType: iss, description: desc,
-      preferredTime: pref, status: 'Open', companyTicket: '', adminNote: '',
-      raisedOn: now, updatedOn: now
+    const d=new Date();
+    const tid='ME-'+(AP.category||'XX').slice(0,2).toUpperCase()+'-'+
+      String(d.getDate()).padStart(2,'0')+String(d.getMonth()+1).padStart(2,'0')+
+      String(d.getFullYear()).slice(-2)+'-'+Math.floor(100+Math.random()*900);
+    const now=new Date().toLocaleDateString('en-IN',{day:'2-digit',month:'short',year:'numeric',hour:'2-digit',minute:'2-digit'});
+    await sb('POST','tickets','',{
+      ticket_id:tid, customer_phone:CU.phone, customer_name:CU.name,
+      product_id:AP.product_id, product_brand:AP.brand, product_name:AP.product_name,
+      model_number:AP.model_number, issue_type:iss, description:desc,
+      preferred_time:pref, status:'Open', raised_on:now, updated_on:now
     });
-    await jbSet(BINS.tickets, tickets);
-    document.getElementById('stid').textContent  = tid;
-    document.getElementById('stsub').textContent = `${AP.brand} ${AP.modelNumber}`;
+    document.getElementById('stid').textContent=tid;
+    document.getElementById('stsub').textContent=`${AP.brand} ${AP.model_number}`;
     go('s-ok');
-  } catch(e) { toast('Cannot submit. Try again.'); console.error(e); }
-  finally { btn.disabled=false; btn.textContent='Submit Complaint →'; }
+  } catch(e){toast('Error: '+e.message);}
+  finally{btn.disabled=false; btn.textContent='Submit Complaint →';}
 }
 
-// ── TICKETS TAB ───────────────────────────────────
+// ── TICKETS TAB ────────────────────────────────
 async function loadTix(body) {
   try {
-    await ensureBins();
-    const tix = (await jbGet(BINS.tickets)).filter(t => t.customerPhone===CU.phone).reverse();
-    if (!tix.length) { body.innerHTML=`<div style="padding-top:14px"><div class="empty"><span>🎫</span><p>No complaints raised yet.</p></div></div>`; return; }
-    body.innerHTML = '<div style="padding-top:14px">'+tix.map(t=>`
+    const tix=await sb('GET','tickets',`?customer_phone=eq.${CU.phone}&select=*&order=id.desc`);
+    if(!tix.length){body.innerHTML=`<div style="padding-top:14px"><div class="empty"><span>🎫</span><p>No complaints raised yet.</p></div></div>`;return;}
+    body.innerHTML='<div style="padding-top:14px">'+tix.map(t=>`
       <div class="tc">
-        <div class="tct"><div><div class="tid">${t.ticketId}</div><div class="tdt">${t.raisedOn}</div></div><span class="pill ${pc(t.status)}">${t.status}</span></div>
-        <div class="tpr">${t.productBrand} ${t.modelNumber}</div>
-        <div class="tis">${t.issueType}</div>
+        <div class="tct"><div><div class="tid">${t.ticket_id}</div><div class="tdt">${t.raised_on}</div></div><span class="pill ${pc(t.status)}">${t.status}</span></div>
+        <div class="tpr">${t.product_brand} ${t.model_number}</div>
+        <div class="tis">${t.issue_type}</div>
         ${t.description?`<div class="tis" style="margin-top:2px">${t.description}</div>`:''}
-        ${t.adminNote?`<div class="tno">📝 ${t.adminNote}</div>`:''}
-        ${t.companyTicket?`<div class="tco">🏢 Company Ref: ${t.companyTicket}</div>`:''}
+        ${t.admin_note?`<div class="tno">📝 ${t.admin_note}</div>`:''}
+        ${t.company_ticket?`<div class="tco">🏢 Company Ref: ${t.company_ticket}</div>`:''}
       </div>`).join('')+'</div>';
-  } catch(e) { body.innerHTML=`<div class="empty"><span>⚠️</span><p>Could not load.</p></div>`; }
+  } catch(e){body.innerHTML=`<div class="empty"><span>⚠️</span><p>Error: ${e.message}</p></div>`;}
 }
 
-// ── PROFILE TAB ───────────────────────────────────
+// ── PROFILE TAB ────────────────────────────────
 function renderProf(body) {
-  const u = CU;
-  const row = (l,val) => `<div style="display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid var(--border);"><span style="font-size:.78rem;color:var(--muted);">${l}</span><span style="font-size:.82rem;font-weight:600;">${val}</span></div>`;
-  body.innerHTML = `<div style="padding-top:14px">
+  const u=CU;
+  const row=(l,val)=>`<div style="display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--border);"><span style="font-size:.78rem;color:var(--muted);">${l}</span><span style="font-size:.82rem;font-weight:600;">${val}</span></div>`;
+  body.innerHTML=`<div style="padding-top:14px">
     <div style="display:flex;align-items:center;gap:13px;margin-bottom:22px;">
       <div style="width:52px;height:52px;border-radius:13px;background:var(--goldg);display:flex;align-items:center;justify-content:center;font-size:1.35rem;font-weight:800;color:#0F1C2E;flex-shrink:0;">${u.name[0].toUpperCase()}</div>
       <div><div style="font-size:1.05rem;font-weight:800;">${u.name}</div><div style="font-size:.78rem;color:var(--muted);">${u.phone}</div></div>
     </div>
-    ${row('Name',u.name)}${row('Phone',u.phone)}${row('Email',u.email||'—')}${row('Address',u.address)}${row('City',u.city)}${row('Pin Code',u.pinCode)}
+    ${row('Name',u.name)}${row('Phone',u.phone)}${row('Email',u.email||'—')}${row('Address',u.address)}${row('City',u.city)}${row('Pin Code',u.pin_code)}
     <div class="mt20"><button class="btn br" onclick="doLogout()">Sign Out</button></div>
   </div>`;
 }
 
-// ── HELPERS ───────────────────────────────────────
+// ── HELPERS ────────────────────────────────────
 function v(id){return document.getElementById(id)?.value?.trim()||'';}
 function fd(d){if(!d)return'—';try{return new Date(d).toLocaleDateString('en-IN',{day:'2-digit',month:'short',year:'numeric'});}catch{return String(d);}}
 function addYrs(ds,y){try{const d=new Date(ds);d.setFullYear(d.getFullYear()+(y||1));return d.toISOString().slice(0,10);}catch{return '';}}
 function warOk(ds,y){try{return new Date(addYrs(ds,y||1))>new Date();}catch{return false;}}
 function catIco(c){return{'Air Conditioner':'❄️','Washing Machine':'🌀','Refrigerator':'🧊','Television':'📺','Microwave':'♨️','Water Purifier':'💧','Geyser':'🔥'}[c]||'📦';}
 function catBg(c){return{'Air Conditioner':'rgba(96,165,250,.15)','Washing Machine':'rgba(167,139,250,.15)','Refrigerator':'rgba(52,211,153,.15)','Television':'rgba(251,191,36,.15)','Geyser':'rgba(248,113,113,.15)'}[c]||'rgba(212,168,67,.15)';}
-function pc(s){return{'Open':'po','In Progress':'pp','Resolved':'pr','Closed':'pc2'}[s]||'po';}
+function pc(s){return{'Open':'po','In Progress':'pp','Resolved':'pr2','Closed':'pc2'}[s]||'po';}
 function toast(m){const t=document.getElementById('toast');t.textContent=m;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),3200);}
 
-// ── RESET ────────────────────────────────────────
-function resetBins() {
-  if (!confirm('This will reset the app connection. Your data on the server is safe. Continue?')) return;
-  localStorage.removeItem('me_bins');
-  localStorage.removeItem('me_sess2');
-  BINS = {};
-  CU = null;
-  toast('Reset done. Reconnecting…');
-  setTimeout(() => window.location.reload(), 1500);
-}
-
-// ── INIT ──────────────────────────────────────────
-window.addEventListener('load', async () => {
-  // Auto-setup bins on first load (no user action needed)
-  try { await ensureBins(); } catch(e) { console.log('Bin setup deferred:', e.message); }
-  if (CU) { renderHome(); go('s-home'); }
+// ── INIT ───────────────────────────────────────
+window.addEventListener('load',()=>{
+  if(CU){renderHome();go('s-home');}
   else go('s-splash');
 });
 </script>
