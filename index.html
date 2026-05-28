@@ -291,7 +291,8 @@ async function doReg() {
     const existing = await sb('GET','customers',`?phone=eq.${phone}&select=phone`);
     if (existing.length) { toast('Mobile already registered. Please sign in.'); return; }
     const now = new Date().toLocaleDateString('en-IN',{day:'2-digit',month:'short',year:'numeric'});
-    const rows = await sb('POST','customers','?select=*',{phone,name,email,address,city,pin_code,registered_on:now});
+    await sb('POST','customers','',{phone,name,email,address,city,pin_code,registered_on:now});
+    const rows = await sb('GET','customers',`?phone=eq.${phone}&select=*`);
     CU = rows[0];
     localStorage.setItem('me_user', JSON.stringify(CU));
     renderHome(); go('s-home');
