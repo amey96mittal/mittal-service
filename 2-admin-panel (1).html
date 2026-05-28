@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mittal Electronics – Admin</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#080F1A;--bg2:#0D1825;--nav:#0A1220;--card:#111E2E;--card2:#162536;--gold:#D4A843;--gold2:#EEC96A;--goldg:linear-gradient(135deg,#D4A843,#EEC96A);--white:#EDE8DF;--muted:#6B7F94;--border:rgba(237,232,223,0.07);--borderg:rgba(212,168,67,0.18);--green:#2DD4A0;--green-bg:rgba(45,212,160,0.1);--amber:#FBBF24;--amber-bg:rgba(251,191,36,0.1);--red:#F87171;--red-bg:rgba(248,113,113,0.1);--blue:#60A5FA;--blue-bg:rgba(96,165,250,0.1);--r:14px;--r2:10px;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--bg);color:var(--white);min-height:100vh;display:flex;flex-direction:column;}
+#lwall{position:fixed;inset:0;background:var(--bg);display:flex;align-items:center;justify-content:center;z-index:500;padding:20px;}
+.lbox{background:var(--card);border:1px solid var(--borderg);border-radius:20px;padding:38px 30px;width:100%;max-width:380px;text-align:center;}
+.lbox-i{font-size:2.6rem;margin-bottom:16px;}
+.lbox-t{font-size:1.3rem;font-weight:800;margin-bottom:4px;}
+.lbox-s{font-size:.82rem;color:var(--muted);margin-bottom:26px;line-height:1.6;}
+.lf{text-align:left;margin-bottom:14px;}
+.lf label{display:block;font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:5px;}
+.lf input{width:100%;padding:11px 13px;background:var(--card2);border:1px solid var(--border);border-radius:var(--r2);color:var(--white);font-family:inherit;font-size:.88rem;outline:none;transition:border-color .2s;}
+.lf input:focus{border-color:var(--gold);}
+.lbtn{width:100%;padding:12px;background:var(--goldg);border:none;border-radius:var(--r2);font-family:inherit;font-size:.92rem;font-weight:700;color:#080F1A;cursor:pointer;margin-top:4px;}
+.lbtn:hover{opacity:.9;}
+.lhint{font-size:.72rem;color:var(--muted);margin-top:12px;}
+.app{display:flex;height:100vh;overflow:hidden;width:100%;}
+.sidebar{width:215px;flex-shrink:0;background:var(--nav);border-right:1px solid var(--border);display:flex;flex-direction:column;}
+.sb-logo{padding:20px 18px 16px;border-bottom:1px solid var(--border);}
+.sb-brand{font-size:.98rem;font-weight:800;color:var(--gold);}
+.sb-sub{font-size:.66rem;color:var(--muted);margin-top:2px;}
+.sb-badge{display:inline-block;margin-top:7px;padding:2px 8px;border-radius:20px;background:rgba(212,168,67,.12);color:var(--gold);font-size:.61rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;}
+.sb-nav{flex:1;padding:12px 9px;overflow-y:auto;}
+.sb-sec{font-size:.59rem;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);padding:0 7px;margin:13px 0 5px;}
+.sb-sec:first-child{margin-top:0;}
+.sbi{display:flex;align-items:center;gap:8px;padding:8px 10px;border-radius:var(--r2);font-size:.81rem;font-weight:500;color:var(--muted);cursor:pointer;transition:all .14s;margin-bottom:2px;border:none;background:none;width:100%;text-align:left;font-family:inherit;}
+.sbi:hover{background:var(--card2);color:var(--white);}
+.sbi.on{background:rgba(212,168,67,.1);color:var(--gold);}
+.sbi .si{font-size:.92rem;}
+.sbi-badge{margin-left:auto;background:var(--red);color:#fff;font-size:.59rem;font-weight:800;padding:1px 6px;border-radius:20px;}
+.sb-foot{padding:13px;border-top:1px solid var(--border);}
+.sb-admin{display:flex;align-items:center;gap:9px;}
+.sb-ava{width:29px;height:29px;border-radius:7px;background:var(--goldg);display:flex;align-items:center;justify-content:center;font-size:.82rem;font-weight:800;color:#080F1A;}
+.sb-an{font-size:.79rem;font-weight:700;}
+.sb-ar{font-size:.65rem;color:var(--muted);}
+.main{flex:1;display:flex;flex-direction:column;overflow:hidden;}
+.topbar{display:flex;align-items:center;justify-content:space-between;padding:13px 22px;border-bottom:1px solid var(--border);background:var(--bg2);flex-shrink:0;}
+.tb-t{font-size:1.15rem;font-weight:800;}
+.tb-r{display:flex;align-items:center;gap:9px;}
+.tb-d{font-size:.76rem;color:var(--muted);}
+.add-btn{padding:7px 15px;background:var(--goldg);border:none;border-radius:var(--r2);font-family:inherit;font-size:.8rem;font-weight:700;color:#080F1A;cursor:pointer;}
+.content{flex:1;overflow-y:auto;padding:20px 22px;}
+.panel{display:none;}.panel.on{display:block;}
+.kpi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:20px;}
+.kpi{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:16px 18px;}
+.kpi-ico{font-size:1.3rem;margin-bottom:9px;}
+.kpi-v{font-size:1.8rem;font-weight:800;margin-bottom:2px;}
+.kpi-l{font-size:.7rem;color:var(--muted);}
+.tcard{background:var(--card);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;margin-bottom:18px;}
+.thead{display:flex;align-items:center;justify-content:space-between;padding:13px 18px;border-bottom:1px solid var(--border);gap:10px;flex-wrap:wrap;}
+.thead-t{font-size:.94rem;font-weight:700;}
+.thead-r{display:flex;align-items:center;gap:7px;flex-wrap:wrap;}
+.srch{padding:6px 12px;background:var(--card2);border:1px solid var(--border);border-radius:var(--r2);color:var(--white);font-family:inherit;font-size:.79rem;outline:none;width:180px;}
+.srch::placeholder{color:var(--muted);}
+.srch:focus{border-color:var(--gold);}
+.fsel{padding:6px 10px;background:var(--card2);border:1px solid var(--border);border-radius:var(--r2);color:var(--muted);font-family:inherit;font-size:.79rem;outline:none;cursor:pointer;-webkit-appearance:none;}
+.bsm{padding:6px 12px;border-radius:var(--r2);border:none;font-family:inherit;font-size:.77rem;font-weight:700;cursor:pointer;}
+.b-gold{background:var(--goldg);color:#080F1A;}
+.b-out{background:transparent;color:var(--muted);border:1px solid var(--border);}
+.b-out:hover{border-color:var(--gold);color:var(--gold);}
+.tw{overflow-x:auto;}
+table{width:100%;border-collapse:collapse;}
+thead tr{background:var(--card2);}
+th{padding:9px 13px;text-align:left;font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);white-space:nowrap;}
+td{padding:10px 13px;font-size:.82rem;color:var(--white);border-bottom:1px solid var(--border);vertical-align:middle;}
+tbody tr:last-child td{border-bottom:none;}
+tbody tr:hover{background:var(--card2);}
+.mono{font-family:'JetBrains Mono',monospace;font-size:.7rem;color:var(--gold);}
+.pill{display:inline-flex;align-items:center;gap:4px;padding:2px 8px;border-radius:20px;font-size:.62rem;font-weight:800;text-transform:uppercase;letter-spacing:.05em;}
+.pill::before{content:'';width:5px;height:5px;border-radius:50%;background:currentColor;}
+.p-open{background:var(--amber-bg);color:var(--amber);}
+.p-prog{background:var(--blue-bg);color:var(--blue);}
+.p-res{background:var(--green-bg);color:var(--green);}
+.p-clo{background:rgba(107,127,148,.12);color:var(--muted);}
+.modal-wrap{position:fixed;inset:0;background:rgba(0,0,0,.75);backdrop-filter:blur(4px);z-index:200;display:none;align-items:center;justify-content:center;padding:18px;}
+.modal-wrap.open{display:flex;}
+.modal{background:var(--card);border:1px solid var(--borderg);border-radius:var(--r);width:100%;max-width:520px;max-height:90vh;overflow-y:auto;}
+.mh{padding:17px 20px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;}
+.mh-id{font-size:.68rem;color:var(--gold);font-family:'JetBrains Mono',monospace;margin-bottom:2px;}
+.mh-t{font-size:1rem;font-weight:800;}
+.mcl{background:none;border:none;color:var(--muted);cursor:pointer;font-size:1.15rem;padding:4px;line-height:1;}
+.mb{padding:20px;}
+.ms{margin-bottom:18px;}
+.ms h4{font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:10px;}
+.ir{display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid var(--border);gap:13px;}
+.ir:last-child{border-bottom:none;}
+.ir-l{font-size:.77rem;color:var(--muted);}
+.ir-v{font-size:.82rem;font-weight:600;text-align:right;word-break:break-word;max-width:60%;}
+.mf{margin-bottom:12px;}
+.mf label{display:block;font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:5px;}
+.mf input,.mf select,.mf textarea{width:100%;padding:9px 12px;background:var(--card2);border:1px solid var(--border);border-radius:var(--r2);color:var(--white);font-family:inherit;font-size:.85rem;outline:none;transition:border-color .2s;}
+.mf input:focus,.mf select:focus,.mf textarea:focus{border-color:var(--gold);}
+.mf textarea{resize:vertical;min-height:68px;}
+.mf select option{background:var(--card2);}
+.mfoot{padding:13px 20px;border-top:1px solid var(--border);display:flex;gap:8px;justify-content:flex-end;}
+.ap-grid{display:grid;grid-template-columns:1fr 1fr;gap:13px;}
+.full{grid-column:1/-1;}
+.cf{padding:11px 13px;background:var(--card2);border-radius:var(--r2);border:1px solid var(--borderg);margin-bottom:4px;display:none;}
+.cf-l{font-size:.65rem;color:var(--muted);margin-bottom:2px;}
+.cf-n{font-size:.91rem;font-weight:700;}
+.pform{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:20px;margin-bottom:18px;}
+.pform h3{font-size:.93rem;font-weight:700;margin-bottom:6px;}
+.pform>p{font-size:.79rem;color:var(--muted);margin-bottom:16px;line-height:1.6;}
+.pprev{background:linear-gradient(135deg,#122019,#0a1510);border:1px solid rgba(45,212,160,.18);border-radius:var(--r2);padding:14px;margin-top:12px;position:relative;overflow:hidden;}
+.pprev::after{content:'🎉';position:absolute;right:11px;top:50%;transform:translateY(-50%);font-size:2.3rem;opacity:.28;}
+.pp-tag{font-size:.65rem;font-weight:700;color:var(--green);text-transform:uppercase;letter-spacing:.08em;margin-bottom:3px;}
+.pp-t{font-size:.93rem;font-weight:700;}
+.pp-s{font-size:.73rem;color:rgba(237,232,223,.4);margin-top:2px;}
+.ccard{display:flex;align-items:center;gap:12px;padding:12px 18px;border-bottom:1px solid var(--border);transition:background .1s;}
+.ccard:hover{background:var(--card2);}
+.ccard:last-child{border-bottom:none;}
+.cc-a{width:34px;height:34px;border-radius:9px;background:var(--goldg);display:flex;align-items:center;justify-content:center;font-weight:800;color:#080F1A;flex-shrink:0;}
+.cc-n{font-size:.86rem;font-weight:700;}
+.cc-p{font-size:.74rem;color:var(--muted);}
+.empty{text-align:center;padding:36px;color:var(--muted);}
+.empty span{font-size:2rem;display:block;margin-bottom:9px;}
+.ldr{display:flex;align-items:center;justify-content:center;padding:36px;gap:10px;color:var(--muted);font-size:.83rem;}
+.spin{width:20px;height:20px;border:2px solid rgba(212,168,67,.2);border-top-color:var(--gold);border-radius:50%;animation:spin .7s linear infinite;}
+@keyframes spin{to{transform:rotate(360deg);}}
+#toast{position:fixed;bottom:22px;right:22px;background:var(--card2);border:1px solid var(--borderg);color:var(--white);padding:10px 17px;border-radius:var(--r2);font-size:.82rem;font-weight:600;box-shadow:0 6px 28px rgba(0,0,0,.3);transform:translateY(18px);opacity:0;transition:all .28s;z-index:999;pointer-events:none;}
+#toast.show{transform:translateY(0);opacity:1;}
+@media(max-width:860px){.sidebar{display:none;}.kpi-grid{grid-template-columns:1fr 1fr;}}
+@media(max-width:560px){.content{padding:13px;}.topbar{padding:11px 13px;}}
+</style>
+</head>
+<body>
+
+<div id="lwall">
+  <div class="lbox">
+    <div class="lbox-i">🏪</div>
+    <div class="lbox-t">Mittal Electronics</div>
+    <div class="lbox-s">Admin Panel · Service Management<br>Akola & Nagpur</div>
+    <div class="lf"><label>Username</label><input type="text" id="au" placeholder="admin" autocomplete="username"></div>
+    <div class="lf"><label>Password</label><input type="password" id="ap2" placeholder="••••••••"></div>
+    <button class="lbtn" onclick="adminLogin()">Sign In →</button>
+    <div class="lhint">Username: admin &nbsp;|&nbsp; Password: mittal2024</div>
+  </div>
+</div>
+
+<div class="app" id="app" style="display:none;">
+  <aside class="sidebar">
+    <div class="sb-logo">
+      <div class="sb-brand">Mittal Electronics</div>
+      <div class="sb-sub">Service Management</div>
+      <div class="sb-badge">Admin Panel</div>
+    </div>
+    <nav class="sb-nav">
+      <div class="sb-sec">Main</div>
+      <button class="sbi on" onclick="showPanel('dashboard',this)"><span class="si">📊</span>Dashboard</button>
+      <button class="sbi" onclick="showPanel('tickets',this)"><span class="si">🎫</span>All Tickets<span class="sbi-badge" id="ob" style="display:none">0</span></button>
+      <button class="sbi" onclick="showPanel('customers',this)"><span class="si">👥</span>Customers</button>
+      <div class="sb-sec">Tools</div>
+      <button class="sbi" onclick="showPanel('addprod',this)"><span class="si">➕</span>Add Product</button>
+      <button class="sbi" onclick="showPanel('promos',this)"><span class="si">📢</span>Promotions</button>
+    </nav>
+    <div class="sb-foot">
+      <div class="sb-admin">
+        <div class="sb-ava">A</div>
+        <div><div class="sb-an">Admin</div><div class="sb-ar">Service Manager</div></div>
+      </div>
+    </div>
+  </aside>
+
+  <div class="main">
+    <div class="topbar">
+      <div class="tb-t" id="tb-title">Dashboard</div>
+      <div class="tb-r">
+        <div class="tb-d" id="tb-date"></div>
+        <button class="add-btn" onclick="showPanel('addprod',null)">+ Add Product</button>
+      </div>
+    </div>
+    <div class="content">
+
+      <div class="panel on" id="p-dashboard">
+        <div class="kpi-grid" id="kpi-grid"><div class="ldr"><div class="spin"></div>Loading…</div></div>
+        <div class="tcard">
+          <div class="thead"><div class="thead-t">Recent Tickets</div><button class="bsm b-out" onclick="showPanel('tickets',null)">View All →</button></div>
+          <div class="tw"><table><thead><tr><th>Ticket ID</th><th>Customer</th><th>Product</th><th>Issue</th><th>Status</th><th>Date</th><th></th></tr></thead><tbody id="rt-body"></tbody></table></div>
+        </div>
+      </div>
+
+      <div class="panel" id="p-tickets">
+        <div class="tcard">
+          <div class="thead">
+            <div class="thead-t">All Service Tickets</div>
+            <div class="thead-r">
+              <input class="srch" placeholder="Search…" id="tix-srch" oninput="filterTix()">
+              <select class="fsel" id="sts-f" onchange="filterTix()"><option value="">All Status</option><option>Open</option><option>In Progress</option><option>Resolved</option><option>Closed</option></select>
+              <button class="bsm b-gold" onclick="exportCSV()">↓ Export</button>
+            </div>
+          </div>
+          <div class="tw"><table><thead><tr><th>Ticket ID</th><th>Customer</th><th>Phone</th><th>Product</th><th>Issue</th><th>Status</th><th>Date</th><th></th></tr></thead><tbody id="at-body"></tbody></table></div>
+        </div>
+      </div>
+
+      <div class="panel" id="p-customers">
+        <div class="tcard">
+          <div class="thead"><div class="thead-t">Registered Customers</div><div class="thead-r"><input class="srch" placeholder="Search name / phone…" oninput="filterCust(this.value)"></div></div>
+          <div id="cust-list"></div>
+        </div>
+      </div>
+
+      <div class="panel" id="p-addprod">
+        <div class="tcard">
+          <div class="thead"><div class="thead-t">Add Product to Customer</div></div>
+          <div style="padding:20px;">
+            <div class="ap-grid">
+              <div class="mf full"><label>Customer Mobile Number ✱</label><input type="tel" id="ap-ph" placeholder="10-digit mobile" maxlength="10" inputmode="numeric" oninput="lookupCust()"></div>
+              <div class="cf full" id="ap-found"><div class="cf-l">CUSTOMER FOUND ✓</div><div class="cf-n" id="ap-cn">—</div><div style="font-size:.74rem;color:var(--muted)" id="ap-ca">—</div></div>
+              <div class="mf"><label>Brand ✱</label><select id="ap-br"><option value="">Select brand</option><option>Mitsubishi Heavy</option><option>Mitsubishi Electric</option><option>Hitachi</option><option>Blue Star</option><option>Panasonic</option><option>IFB</option><option>LG</option><option>Samsung</option><option>Voltas</option><option>Daikin</option><option>Other</option></select></div>
+              <div class="mf"><label>Category ✱</label><select id="ap-cat"><option value="">Select category</option><option>Air Conditioner</option><option>Washing Machine</option><option>Refrigerator</option><option>Television</option><option>Microwave</option><option>Water Purifier</option><option>Geyser</option><option>Other</option></select></div>
+              <div class="mf"><label>Product Name ✱</label><input type="text" id="ap-nm" placeholder="e.g. Split AC 1.5 Ton"></div>
+              <div class="mf"><label>Model Number ✱</label><input type="text" id="ap-mo" placeholder="e.g. RU18CKY" style="font-family:'JetBrains Mono',monospace;font-size:.82rem;"></div>
+              <div class="mf"><label>Purchase Date ✱</label><input type="date" id="ap-dt"></div>
+              <div class="mf"><label>Invoice Number</label><input type="text" id="ap-in" placeholder="e.g. ME-2024-0421"></div>
+              <div class="mf"><label>Price (₹)</label><input type="text" id="ap-pr" placeholder="e.g. 42000" inputmode="numeric"></div>
+              <div class="mf"><label>Warranty Period</label><select id="ap-wy"><option value="1">1 Year</option><option value="2">2 Years</option><option value="3">3 Years</option><option value="5">5 Years</option></select></div>
+            </div>
+            <div style="margin-top:18px;"><button class="bsm b-gold" style="padding:11px 22px;font-size:.87rem;" onclick="addProduct()">Add Product to Customer Account</button></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel" id="p-promos">
+        <div class="pform">
+          <h3>📢 Create Promotion Banner</h3>
+          <p>This banner shows on every customer's app home screen.</p>
+          <div class="mf"><label>Tag Line</label><input type="text" id="p-tag" placeholder="e.g. Summer Special" oninput="prevP()"></div>
+          <div class="mf"><label>Main Title ✱</label><input type="text" id="p-title" placeholder="e.g. Free Installation on all ACs this month" oninput="prevP()"></div>
+          <div class="mf"><label>Sub Text</label><input type="text" id="p-sub" placeholder="e.g. Valid till 30 April. Visit showroom." oninput="prevP()"></div>
+          <div style="font-size:.65rem;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin:12px 0 7px;">Preview</div>
+          <div class="pprev"><div class="pp-tag" id="pp-tag">🎊 Offer</div><div class="pp-t" id="pp-t">Your promotion title</div><div class="pp-s" id="pp-s">Sub text here</div></div>
+          <div style="margin-top:14px;"><button class="bsm b-gold" style="padding:10px 22px;" onclick="savePromo()">Publish Promotion →</button></div>
+        </div>
+        <div class="tcard">
+          <div class="thead"><div class="thead-t">Published Promotions</div></div>
+          <div id="promo-list" style="padding:18px;"><div class="ldr"><div class="spin"></div>Loading…</div></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- TICKET MODAL -->
+<div class="modal-wrap" id="tix-modal">
+  <div class="modal">
+    <div class="mh">
+      <div><div class="mh-id" id="m-id">—</div><div class="mh-t" id="m-title">Ticket Details</div></div>
+      <button class="mcl" onclick="closeModal()">✕</button>
+    </div>
+    <div class="mb">
+      <div class="ms">
+        <h4>Customer & Product</h4>
+        <div class="ir"><span class="ir-l">Customer</span><span class="ir-v" id="m-cust">—</span></div>
+        <div class="ir"><span class="ir-l">Phone</span><span class="ir-v" id="m-phone">—</span></div>
+        <div class="ir"><span class="ir-l">Product</span><span class="ir-v" id="m-prod">—</span></div>
+        <div class="ir"><span class="ir-l">Model</span><span class="ir-v" id="m-model">—</span></div>
+        <div class="ir"><span class="ir-l">Issue</span><span class="ir-v" id="m-issue">—</span></div>
+        <div class="ir"><span class="ir-l">Description</span><span class="ir-v" id="m-desc">—</span></div>
+        <div class="ir"><span class="ir-l">Preferred Time</span><span class="ir-v" id="m-pref">—</span></div>
+        <div class="ir"><span class="ir-l">Raised On</span><span class="ir-v" id="m-date">—</span></div>
+      </div>
+      <div class="ms">
+        <h4>Update Ticket</h4>
+        <div class="mf"><label>Status ✱</label><select id="m-status"><option>Open</option><option>In Progress</option><option>Resolved</option><option>Closed</option></select></div>
+        <div class="mf"><label>Company Ticket Number</label><input type="text" id="m-ctix" placeholder="e.g. HIT-20240401-55221" style="font-family:'JetBrains Mono',monospace;font-size:.82rem;"></div>
+        <div class="mf"><label>Note to Customer</label><textarea id="m-note" placeholder="e.g. Technician visit on 5 April, 10am–12pm"></textarea></div>
+      </div>
+    </div>
+    <div class="mfoot">
+      <button class="bsm b-out" onclick="closeModal()">Cancel</button>
+      <button class="bsm b-gold" onclick="saveTix()">Save Update →</button>
+    </div>
+  </div>
+</div>
+
+<div id="toast"></div>
+
+<script>
+const SB_URL = 'https://cesckokfutvdanqxptbu.supabase.co';
+const SB_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNlc2Nrb2tmdXR2ZGFucXhwdGJ1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzg2NTM2MzYsImV4cCI6MjA5NDIyOTYzNn0.xx70d9xoaM-vRXUwE8fiBMJJQHK-LTtsdHB59l-VGq0';
+const H = {'Content-Type':'application/json','apikey':SB_KEY,'Authorization':'Bearer '+SB_KEY};
+
+async function sb(method,table,params='',body=null){
+  const opts={method,headers:H};
+  if(body)opts.body=JSON.stringify(body);
+  const r=await fetch(`${SB_URL}/rest/v1/${table}${params}`,opts);
+  if(!r.ok){const e=await r.json();throw new Error(e.message||r.status);}
+  if(r.status===204||method==='DELETE')return true;
+  return r.json();
+}
+
+const CREDS={user:'admin',pass:'mittal2024'};
+let _allTix=[], _custs=[], ATI=null;
+
+function adminLogin(){
+  const u=document.getElementById('au').value.trim(),p=document.getElementById('ap2').value;
+  if(u===CREDS.user&&p===CREDS.pass){
+    document.getElementById('lwall').style.display='none';
+    document.getElementById('app').style.display='flex';
+    document.getElementById('tb-date').textContent=new Date().toLocaleDateString('en-IN',{weekday:'short',day:'numeric',month:'short',year:'numeric'});
+    loadDashboard();
+  } else toast('Incorrect username or password');
+}
+document.getElementById('ap2').addEventListener('keydown',e=>{if(e.key==='Enter')adminLogin();});
+
+function showPanel(id,el){
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('on'));
+  document.getElementById('p-'+id).classList.add('on');
+  document.querySelectorAll('.sbi').forEach(b=>b.classList.remove('on'));
+  if(el)el.classList.add('on');
+  const T={dashboard:'Dashboard',tickets:'All Tickets',customers:'Customers',addprod:'Add Product',promos:'Promotions'};
+  document.getElementById('tb-title').textContent=T[id]||'';
+  if(id==='dashboard')loadDashboard();
+  if(id==='tickets')loadAllTix();
+  if(id==='customers')loadCustomers();
+  if(id==='promos')loadPromos();
+}
+
+async function loadDashboard(){
+  try{
+    const [tickets,customers,products]=await Promise.all([
+      sb('GET','tickets','?select=*&order=id.desc'),
+      sb('GET','customers','?select=*'),
+      sb('GET','products','?select=*')
+    ]);
+    _allTix=tickets||[];
+    const open=_allTix.filter(t=>t.status==='Open').length;
+    const inP=_allTix.filter(t=>t.status==='In Progress').length;
+    document.getElementById('kpi-grid').innerHTML=`
+      <div class="kpi"><div class="kpi-ico">👥</div><div class="kpi-v">${(customers||[]).length}</div><div class="kpi-l">Customers</div></div>
+      <div class="kpi"><div class="kpi-ico">📦</div><div class="kpi-v">${(products||[]).length}</div><div class="kpi-l">Products</div></div>
+      <div class="kpi"><div class="kpi-ico">🔴</div><div class="kpi-v">${open}</div><div class="kpi-l">Open Tickets</div></div>
+      <div class="kpi"><div class="kpi-ico">🔵</div><div class="kpi-v">${inP}</div><div class="kpi-l">In Progress</div></div>`;
+    updateBadge(open);
+    const tbody=document.getElementById('rt-body');
+    const recent=_allTix.slice(0,10);
+    if(!recent.length){tbody.innerHTML=`<tr><td colspan="7" style="text-align:center;color:var(--muted);padding:26px;">No tickets yet.</td></tr>`;return;}
+    tbody.innerHTML=recent.map(t=>`<tr>
+      <td><span class="mono">${t.ticket_id}</span></td>
+      <td><strong>${t.customer_name}</strong></td>
+      <td>${t.product_brand} ${t.model_number}</td>
+      <td>${t.issue_type}</td>
+      <td><span class="pill ${pc(t.status)}">${t.status}</span></td>
+      <td>${t.raised_on}</td>
+      <td><button class="bsm b-out" onclick='openModal(${t.id})'>Update</button></td>
+    </tr>`).join('');
+  }catch(e){document.getElementById('kpi-grid').innerHTML=`<div class="ldr">Error: ${e.message}</div>`;}
+}
+
+async function loadAllTix(){
+  if(!_allTix.length){try{_allTix=await sb('GET','tickets','?select=*&order=id.desc');}catch(e){return;}}
+  filterTix();
+}
+
+function filterTix(){
+  const filter=document.getElementById('tix-srch')?.value?.toLowerCase()||'';
+  const sts=document.getElementById('sts-f')?.value||'';
+  const f=_allTix.filter(t=>{
+    const m=!filter||[t.ticket_id,t.customer_name,t.customer_phone,t.model_number,t.issue_type].join(' ').toLowerCase().includes(filter);
+    const s=!sts||t.status===sts;
+    return m&&s;
+  });
+  const tbody=document.getElementById('at-body');
+  if(!f.length){tbody.innerHTML=`<tr><td colspan="8" style="text-align:center;color:var(--muted);padding:26px;">No tickets found.</td></tr>`;return;}
+  tbody.innerHTML=f.map(t=>`<tr>
+    <td><span class="mono">${t.ticket_id}</span></td>
+    <td><strong>${t.customer_name}</strong></td>
+    <td>${t.customer_phone}</td>
+    <td>${t.product_brand} ${t.model_number}</td>
+    <td>${t.issue_type}</td>
+    <td><span class="pill ${pc(t.status)}">${t.status}</span></td>
+    <td>${t.raised_on}</td>
+    <td><button class="bsm b-out" onclick='openModal(${t.id})'>Update</button></td>
+  </tr>`).join('');
+}
+
+function openModal(id){
+  const t=_allTix.find(x=>x.id===id);if(!t)return;ATI=id;
+  document.getElementById('m-id').textContent=t.ticket_id;
+  document.getElementById('m-title').textContent=t.issue_type;
+  document.getElementById('m-cust').textContent=t.customer_name;
+  document.getElementById('m-phone').textContent=t.customer_phone;
+  document.getElementById('m-prod').textContent=`${t.product_brand} ${t.product_name}`;
+  document.getElementById('m-model').textContent=t.model_number;
+  document.getElementById('m-issue').textContent=t.issue_type;
+  document.getElementById('m-desc').textContent=t.description||'—';
+  document.getElementById('m-pref').textContent=t.preferred_time||'—';
+  document.getElementById('m-date').textContent=t.raised_on;
+  document.getElementById('m-status').value=t.status;
+  document.getElementById('m-ctix').value=t.company_ticket||'';
+  document.getElementById('m-note').value=t.admin_note||'';
+  document.getElementById('tix-modal').classList.add('open');
+}
+function closeModal(){document.getElementById('tix-modal').classList.remove('open');}
+
+async function saveTix(){
+  if(!ATI)return;
+  const now=new Date().toLocaleDateString('en-IN',{day:'2-digit',month:'short',year:'numeric',hour:'2-digit',minute:'2-digit'});
+  const body={status:document.getElementById('m-status').value,company_ticket:document.getElementById('m-ctix').value.trim(),admin_note:document.getElementById('m-note').value.trim(),updated_on:now};
+  try{
+    await sb('PATCH','tickets',`?id=eq.${ATI}`,body);
+    const idx=_allTix.findIndex(x=>x.id===ATI);
+    if(idx>-1)Object.assign(_allTix[idx],body);
+    toast('Ticket updated ✓');closeModal();
+    updateBadge(_allTix.filter(t=>t.status==='Open').length);
+    if(document.getElementById('p-tickets').classList.contains('on'))filterTix();
+    if(document.getElementById('p-dashboard').classList.contains('on'))loadDashboard();
+  }catch(e){toast('Error: '+e.message);}
+}
+
+async function loadCustomers(filter=''){
+  if(!_custs.length){try{_custs=await sb('GET','customers','?select=*&order=id.desc');}catch(e){document.getElementById('cust-list').innerHTML=`<div class="ldr">Error: ${e.message}</div>`;return;}}
+  const f=!filter?_custs:_custs.filter(c=>(c.name+c.phone).toLowerCase().includes(filter.toLowerCase()));
+  const list=document.getElementById('cust-list');
+  if(!f.length){list.innerHTML='<div class="empty"><span>👥</span><p>No customers found.</p></div>';return;}
+  list.innerHTML=f.map(c=>`<div class="ccard">
+    <div class="cc-a">${c.name[0].toUpperCase()}</div>
+    <div style="flex:1;min-width:0;">
+      <div class="cc-n">${c.name}</div>
+      <div class="cc-p">${c.phone} · ${c.city||''} ${c.pin_code||''}</div>
+      <div class="cc-p">${c.address||''}</div>
+    </div>
+    <div style="font-size:.71rem;color:var(--muted);flex-shrink:0;">${c.registered_on||''}</div>
+  </div>`).join('');
+}
+function filterCust(v){loadCustomers(v);}
+
+async function lookupCust(){
+  const phone=document.getElementById('ap-ph').value.trim();
+  const found=document.getElementById('ap-found');
+  if(phone.length!==10){found.style.display='none';return;}
+  try{
+    const rows=await sb('GET','customers',`?phone=eq.${phone}&select=*`);
+    if(rows.length){
+      document.getElementById('ap-cn').textContent=rows[0].name;
+      document.getElementById('ap-ca').textContent=`${rows[0].address}, ${rows[0].city} – ${rows[0].pin_code}`;
+      found.style.display='block';
+    } else found.style.display='none';
+  }catch(e){found.style.display='none';}
+}
+
+async function addProduct(){
+  const phone=document.getElementById('ap-ph').value.trim();
+  const brand=document.getElementById('ap-br').value;
+  const cat=document.getElementById('ap-cat').value;
+  const name=document.getElementById('ap-nm').value.trim();
+  const model=document.getElementById('ap-mo').value.trim();
+  const date=document.getElementById('ap-dt').value;
+  const inv=document.getElementById('ap-in').value.trim();
+  const price=document.getElementById('ap-pr').value.trim();
+  const war=document.getElementById('ap-wy').value;
+  if(!phone||!brand||!cat||!name||!model||!date){toast('Please fill all required fields');return;}
+  try{
+    const custs=await sb('GET','customers',`?phone=eq.${phone}&select=name`);
+    if(!custs.length){toast('Customer not found with this number');return;}
+    const pid='P-'+phone+'-'+Date.now();
+    const now=new Date().toLocaleDateString('en-IN',{day:'2-digit',month:'short',year:'numeric'});
+    await sb('POST','products','',{product_id:pid,customer_phone:phone,customer_name:custs[0].name,brand,category:cat,product_name:name,model_number:model,purchase_date:date,invoice_no:inv,price,warranty_years:parseInt(war),added_on:now});
+    toast(`Product added to ${custs[0].name}'s account ✓`);
+    ['ap-ph','ap-nm','ap-mo','ap-in','ap-pr'].forEach(id=>document.getElementById(id).value='');
+    ['ap-br','ap-cat'].forEach(id=>document.getElementById(id).value='');
+    document.getElementById('ap-dt').value='';
+    document.getElementById('ap-found').style.display='none';
+  }catch(e){toast('Error: '+e.message);}
+}
+
+function prevP(){
+  document.getElementById('pp-tag').textContent='🎊 '+(document.getElementById('p-tag').value||'Offer');
+  document.getElementById('pp-t').textContent=document.getElementById('p-title').value||'Your promotion title';
+  document.getElementById('pp-s').textContent=document.getElementById('p-sub').value||'Sub text here';
+}
+async function savePromo(){
+  const title=document.getElementById('p-title').value.trim();
+  if(!title){toast('Please enter a title');return;}
+  try{
+    const now=new Date().toLocaleDateString('en-IN',{day:'2-digit',month:'short',year:'numeric'});
+    await sb('POST','promos','',{tag:document.getElementById('p-tag').value,title,sub_text:document.getElementById('p-sub').value,created_on:now,active:true});
+    toast('Promotion published ✓');loadPromos();
+  }catch(e){toast('Error: '+e.message);}
+}
+async function loadPromos(){
+  try{
+    const promos=await sb('GET','promos','?select=*&order=id.desc');
+    const list=document.getElementById('promo-list');
+    if(!promos.length){list.innerHTML='<div class="empty"><span>📢</span><p>No promotions yet.</p></div>';return;}
+    list.innerHTML=promos.map(p=>`<div style="padding:11px;border:1px solid var(--border);border-radius:var(--r2);margin-bottom:9px;display:flex;justify-content:space-between;align-items:center;gap:9px;">
+      <div>
+        <div style="font-size:.65rem;color:var(--gold);font-weight:700;text-transform:uppercase;letter-spacing:.08em;">${p.tag||'Offer'}</div>
+        <div style="font-size:.87rem;font-weight:700;">${p.title}</div>
+        <div style="font-size:.73rem;color:var(--muted);">${p.sub_text||''}</div>
+      </div>
+      <div style="display:flex;align-items:center;gap:8px;flex-shrink:0;">
+        <span style="font-size:.7rem;color:var(--muted);">${p.created_on}</span>
+        <button class="bsm b-out" onclick="togglePromo(${p.id},${p.active})">${p.active?'Deactivate':'Activate'}</button>
+      </div>
+    </div>`).join('');
+  }catch(e){}
+}
+async function togglePromo(id,active){
+  try{await sb('PATCH','promos',`?id=eq.${id}`,{active:!active});loadPromos();toast('Promo updated ✓');}catch(e){toast('Error');}
+}
+
+function exportCSV(){
+  if(!_allTix.length){toast('No tickets to export');return;}
+  const H=['Ticket ID','Customer','Phone','Brand','Model','Issue','Description','Status','Company Ticket','Admin Note','Date'];
+  const K=['ticket_id','customer_name','customer_phone','product_brand','model_number','issue_type','description','status','company_ticket','admin_note','raised_on'];
+  const csv=[H.join(','),..._allTix.map(t=>K.map(k=>`"${(t[k]||'').replace(/"/g,'""')}"`).join(','))].join('\n');
+  const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv'}));a.download=`mittal_tickets_${new Date().toISOString().slice(0,10)}.csv`;a.click();
+}
+
+function pc(s){return{'Open':'p-open','In Progress':'p-prog','Resolved':'p-res','Closed':'p-clo'}[s]||'p-open';}
+function updateBadge(n){const b=document.getElementById('ob');b.textContent=n;b.style.display=n?'inline':'none';}
+function toast(m){const t=document.getElementById('toast');t.textContent=m;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),3200);}
+</script>
+</body>
+</html>
