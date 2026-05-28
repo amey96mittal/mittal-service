@@ -255,12 +255,15 @@ const SB_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJ
 const H = { 'Content-Type':'application/json', 'apikey': SB_KEY, 'Authorization': 'Bearer ' + SB_KEY };
 
 async function sb(method, table, params='', body=null) {
-  const opts = { method, headers: H };
+  const opts = { method, headers: {...H, 'Prefer': method==='POST' ? 'return=representation' : ''} };
   if (body) opts.body = JSON.stringify(body);
   const r = await fetch(`${SB_URL}/rest/v1/${table}${params}`, opts);
-  if (!r.ok) { const e = await r.json(); throw new Error(e.message||r.status); }
-  if (method === 'DELETE' || r.status === 204) return true;
-  return r.json();
+  if (r.status === 204 || r.status === 201 && method === 'DELETE') return true;
+  const text = await r.text();
+  if (!text || text.trim() === '') return method === 'POST' ? [] : true;
+  const data = JSON.parse(text);
+  if (!r.ok) throw new Error(data.message || data.error || r.status);
+  return data;
 }
 
 // ── STATE ──────────────────────────────────────
